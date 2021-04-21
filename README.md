@@ -18,7 +18,9 @@
 
 ## Project Description
  > Being college students, time management is essental to our success. Since its important to keep all assignments, and class schedules in order - we decided on a task scheduler seeing as we all need to be organized to succeed. In this task scheduler, the user will be able to create (or delete) tasks with a title, description, priority, and due date. The user will also be able to create tasks within tasks and be able to edit and undo any operations. Input and output will be all be done in the terminal. 
+ > 
  > In this project we will be using the composite design pattern and the state design pattern. The composite design pattern will be used for its ability to treat groups of objects as if they are a single object. This will help streamline the implementation of the "tasks within tasks" feature. This will allow us to make task objects within task objects. 
+ > 
  > The state design pattern will be used to be able choose which behavior to execute for a single task object. This will help us implement the undo feature. In addition, this  will allow us to make changes to task properties that the user wishes to make. 
  > 
  > tools and languages: 
