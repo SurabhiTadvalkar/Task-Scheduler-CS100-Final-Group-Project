@@ -1,36 +1,22 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # Task Scheduler:
  
  > Authors: \<[Jesus Martinez Vega](https://github.com/jesus-mv)\>, \<[Surabhi Tadvalkar](https://github.com/SurabhiTadvalkar)\>, \<[Calvin Truong](https://github.com/ctruo)\>
  
- > You will be forming a group of **THREE** students and working on an interesting project. A list of proposed project ideas that have been successful in previous quarters is given in the project specifications link on iLearn. You can select an idea from the list, start thinking about the features you will implement, what design patterns can help you implement them, and why. If you want to propose your own original idea, you will have to contact an instructor to discuss the project and obtain written permission before you submit your project proposal. Your project needs to implement two design patterns.The project work should be divided almost equally among team members and each member is expected to work on at least one design pattern (more than one partner may work on a pattern) and some of its test cases. You can of course help each other, but it needs to be clear who will be responsible for which patterns and for which features.
- 
- > ## Expectations
- > * Incorporate **at least two** distinct design patterns. You need to include at least *one* design pattern that we will teach this session:
- >   * Composite, Strategy, Abstract Factory, Visitor, or Decorator
- > * All design patterns need to be linked together (it can't be two distinct projects)
- > * Your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group.
-
 ## Project Description
- > Being college students, time management is essental to our success. Since its important to keep all assignments, and class schedules in order - we decided on a task scheduler seeing as we all need to be organized to succeed. In this task scheduler, the user will be able to create (or delete) tasks with a title, description, priority, and due date. The user will also be able to create tasks within tasks and be able to edit and undo any operations. Input and output will be all be done in the terminal. 
- > 
- > In this project we will be using the composite design pattern and the state design pattern. The composite design pattern will be used for its ability to treat groups of objects as if they are a single object. This will help streamline the implementation of the "tasks within tasks" feature. This will allow us to make task objects within task objects. 
- > 
- > The state design pattern will be used to be able choose which behavior to execute for a single task object. This will help us implement the undo feature. In addition, this  will allow us to make changes to task properties that the user wishes to make. 
- > 
- > tools and languages: 
- > * \<[c++](https://www.cplusplus.com/info/description/)\>     - main programming language
- > * \<[valgrind](https://valgrind.org/info/about.html)\>       - to track memory
- > * \<[cmake](https://cmake.org/overview/)\>                   - compilation and testing
- > * <[draw.io](https://drawio-app.com/uml-diagrams/)\>         - to draw UML diagrams
- > * <[github](https://github.com/)\>                           - host of remote repository
- > * <[googletest](https://github.com/google/googletest.git)\>  - for unit testing
- > 
+Being college students, time management is essental to our success. Since its important to keep all assignments, and class schedules in order - we decided on a task scheduler seeing as we all need to be organized to succeed. In this task scheduler, the user will be able to create (or delete) tasks with a title, description, priority, and due date. The user will also be able to create tasks within tasks and be able to edit and undo any operations. Input and output will be all be done in the terminal. 
+  
+In this project we will be using the composite design pattern and the state design pattern. The composite design pattern will be used for its ability to treat groups of objects as if they are a single object. This will help streamline the implementation of the "tasks within tasks" feature. This will allow us to make task objects within task objects. 
+ 
+The state design pattern will be used to be able choose which behavior to execute for a single task object. This will help us implement the undo feature. In addition, this  will allow us to make changes to task properties that the user wishes to make. 
+ 
+ tools and languages: 
+ * \<[c++](https://www.cplusplus.com/info/description/)\>     - main programming language
+ * \<[valgrind](https://valgrind.org/info/about.html)\>       - to track memory
+ * \<[cmake](https://cmake.org/overview/)\>                   - compilation and testing
+ * <[draw.io](https://drawio-app.com/uml-diagrams/)\>         - to draw UML diagrams
+ * <[github](https://github.com/)\>                           - host of remote repository
+ * <[googletest](https://github.com/google/googletest.git)\>  - for unit testing
+ 
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
  > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
