@@ -1,21 +1,26 @@
 # Task Scheduler:
- 
- > Authors: \<[Jesus Martinez Vega](https://github.com/jesus-mv)\>, \<[Surabhi Tadvalkar](https://github.com/SurabhiTadvalkar)\>, \<[Calvin Truong](https://github.com/ctruo)\>
+> Authors: [Jesus Martinez Vega](https://github.com/jesus-mv) , [Surabhi Tadvalkar](https://github.com/SurabhiTadvalkar), [Calvin Truong](https://github.com/ctruo)
  
 ## Project Description
 Being college students, time management is essental to our success. Since its important to keep all assignments, and class schedules in order - we decided on a task scheduler seeing as we all need to be organized to succeed. In this task scheduler, the user will be able to create (or delete) tasks with a title, description, priority, and due date. The user will also be able to create tasks within tasks and be able to edit and undo any operations. Input and output will be all be done in the terminal. 
-  
-In this project we will be using the composite design pattern and the state design pattern. The composite design pattern will be used for its ability to treat groups of objects as if they are a single object. This will help streamline the implementation of the "tasks within tasks" feature. This will allow us to make task objects within task objects. 
- 
-The state design pattern will be used to be able choose which behavior to execute for a single task object. This will help us implement the undo feature. In addition, this  will allow us to make changes to task properties that the user wishes to make. 
+
+In this project we will be using the composite design pattern and the command design pattern.
+
+composite pattern: 
+
+ One of the potential problems that could occur in a task scheduler is that the task scheduler is unable to meet the user's needs because it is too vague and uncustomizable. To combat this we thought of making a feature to enhance tasks and tailor to the user's needs, a "subtasks" feature. The composite design pattern will be used for its ability to treat groups of objects as if they are a single object. This will allow us to make task objects within task objects. For example, if a there was a task called "cleaning bedroom", the user would be able to add subtasks and specify what "cleaning  bedroom" entails. The user could add "clean closet", "organize desk", "make bed", "sweep floors", and "take out trash".
+
+command pattern:
+
+A task schedulers handles a user's schedule and resposiblities which can change frequently. Therefore, it is important that the task scheduler be able to execute that needed flexibilty. A problem that might hinder this capability is being unable to reverse tasks. To combat this, we thought of make a feature that would allow a user to reverse their changes, an "undo" feature. The command design pattern givers the ability to choose a given behavior for a command. This will allow us to alter tasks by encapsulate requests from the user of specific changes. For example, the user could type "undo task edit" in the terminal and that request would be encapsulated and the task would be reverted to the state before the user's edit. 
  
  tools and languages: 
- * \<[c++](https://www.cplusplus.com/info/description/)\>     - main programming language
- * \<[valgrind](https://valgrind.org/info/about.html)\>       - to track memory
- * \<[cmake](https://cmake.org/overview/)\>                   - compilation and testing
- * <[draw.io](https://drawio-app.com/uml-diagrams/)\>         - to draw UML diagrams
- * <[github](https://github.com/)\>                           - host of remote repository
- * <[googletest](https://github.com/google/googletest.git)\>  - for unit testing
+ * [c++](https://www.cplusplus.com/info/description/)      - main programming language
+ * [valgrind](https://valgrind.org/info/about.html)        - to track memory
+ * [cmake](https://cmake.org/overview/)                    - compilation and testing
+ * [draw.io](https://drawio-app.com/uml-diagrams/)         - to draw UML diagrams
+ * [github](https://github.com/)                           - host of remote repository
+ * [googletest](https://github.com/google/googletest.git)  - for unit testing
  
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
