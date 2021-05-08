@@ -21,20 +21,182 @@ A task schedulers handles a user's schedule and resposiblities which can change 
  * [draw.io](https://drawio-app.com/uml-diagrams/)         - to draw UML diagrams
  * [github](https://github.com/)                           - host of remote repository
  * [googletest](https://github.com/google/googletest.git)  - for unit testing
- 
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
+
 ## Class Diagram
- > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
- 
+![cs100project](https://user-images.githubusercontent.com/77246269/117520986-2d7fbf00-af60-11eb-905c-c35df3e685f6.png)
+This is the overarching UML diagram for our task scheduler project. Details can be found below. 
+
+Composite Design Pattern: 
+
+![cs100project_composite](https://user-images.githubusercontent.com/77246269/117521080-b3036f00-af60-11eb-99b5-53e9d014dc17.png)
+
+For our task scheduler, one of the design patterns we decided on was the composite design pattern. We used this pattern in order to create our “subtask” feature. The structure breaks down as such 
+
+Tasks class - Component:
+ It defines an interface. Both the Task class and Project class derive from this class. This class will be abstract because all the functions it holds will be pure virtual. 
+
+Task class - Leaf: 
+It creates an object, specifically a single task, which can have a name, description, deadline, and/or status. It holds no objects of its parent class 
+
+ * In the print method(), it will list out all the information that has been entered and output it into the terminal
+
+ * The addDeadline() function will allow the user to input a deadline for a task
+
+ * The addName() function will allow the user to input a name for a task
+
+ * The addDescription() function will allow the user to input a description for a task
+
+ * The setStatus() function will allow the user to set whether a task is finished or not
+
+Project class - Composite:
+
+It creates an object which can hold the same values as Task, a closest deadline, and a list of tasks within the project (“subtask” feature). The list of tasks within the project is a vector of Tasks pointers.
+
+ * The closest deadline will be found among the subtasks of a project to set an overall deadline for the project if the user has not specified the deadline. The findClosestDeadline() function will return the closest deadline
+
+ * The addDeadline() function will allow the user to input a deadline for a project
+
+ * The addName() function will allow the user to input a name for a project
+
+ * The addDescription() function will allow the user to input a description for a project
+
+ * The setStatus() function will allow the user to set whether a project is finished or not
+
+Command Design Pattern: 
+
+![cs100project_command](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/command.png)
+(look in the images folder for a better picture)
+
+For our task scheduler, one of the design patterns we decided on was the command design pattern. We used this pattern in order to create our “undo” feature. The structure breaks down as such:
+
+Menu class - Invoker: \
+![cs100project_invoker](https://user-images.githubusercontent.com/77246269/117521322-088c4b80-af62-11eb-9186-c843e44fa199.png)
+
+The menu class has six methods.
+In the first method, readInput(string input), it will simply take the user’s input and store it in the the class under the private variable string userinput
+
+In simpleMenu(), it will print out a menu (see below) that can be used to add the information for a simple task to the task scheduler. \
+n-name *you must enter a name\
+d-description\
+t-deadline\
+b-status\
+q-I'm done entering info
+
+In complexMenu(), it will print out a menu (see below) that can be used to add the information for a project to the task scheduler. \
+n-name *you must enter a name\
+d-description \
+t-deadline \
+b-status \
+c- project subtask \
+s-simple subtask \
+q-I’m done entering info
+
+In generalMenu(), it will print out a menu (see below) that can be used to add a simple task, project, or edit a task/project \
+TASK SCHEDULER \
+a- add simple task \
+p- add project \
+o- print my list \
+e- edit task \
+q-quit
+
+In editMenu(), it will print out a menu (see below) that presents the options of what can be edited \
+en - edit name \
+ed - edit desc \
+et - edit deadline \
+eb - change status
+
+In setCommand(TaskCommand* Command), it will look at the string userinput and determine which Concrete Command should be called. For example, if a user looks at the general menu and then type in “a”, it will set the private variable TaskCommand* setCommand to point to an addsimpletask object. 
+
+TaskCommand - command interface and all of its associated concrete commands: \
+![cs100projectConcreteCommands](https://user-images.githubusercontent.com/77246269/117521653-cb28bd80-af63-11eb-9bd5-4b1f952e2b38.png) \
+TaskCommand is the abstract base class for all of the Concrete Commands, it consists of two methods, execute() and unexecute().
+
+addsimpletask - Concrete Command, adds one task to the task scheduler \
+addcomplextask -Concrete Command, adds one “complex” task, or a project, to the task scheduler \
+changetaskname- Concrete Command, changes a partucular task's name \
+Changetaskdeadline- Concrete Command, changes the deadline of a task (note that deadlines are of the form: mm/dd/yyyy) \
+changetaskdescription- Concrete Command, changes the description of a partucular task. \
+printTasks- Concrete Command, prints all tasks in the task scheduler
+
+Task class - reciever: \
+![cs100project_reciver](https://user-images.githubusercontent.com/77246269/117521891-05468f00-af65-11eb-8d6e-7df278ae635e.png) \
+Tasks - this class functions as the receiver for the command design pattern, in addition to functioning as the component for the composite design pattern 
+
+An example of how the classes interact:
+
+The program will start off seeing the general menu from the generalMenu() method in the menu class.  
+TASK SCHEDULER  
+a- add simple task  
+p- add project  
+o- print my list  
+e- edit task  
+q-quit 
+
+Lets say the user wants to make a project, then they will enter “p”.  
+The user will then see the complex menu from the complexMenu() method from the Menu class.  
+n-name *you must enter a name  
+d-description  
+t-deadline  
+b-status  
+c-project subtask  
+s-simple subtask  
+q-I’m done entering info 
+
+Then lets say that the user wants to name their project, so they will enter “n”  
+the user will enter the desired name and the readInput(string input) method will be called and store this name under the private variable string userinput.  
+Then the setCommand() method from the menu class will set the private variable TaskCommand* setCommand to point to a changetaskname object.  
+Then execute() from the changetaskname class will be called, indirectly calling addName(string \_name) in the Project class. 
+
+The user will then see the complex menu from the complexMenu() method from the Menu class.  
+n-name *you must enter a name  
+d-description  
+t-deadline  
+B-status  
+c-complex subtask  
+s-simple subtask  
+q-I’m done entering info 
+
+The user wants to create a simple subtask for their project, so they will enter “s” \
+Then the setCommand() method from the menu class and will set the private variable TaskCommand* setCommand to the addsimpletaskConcrete Command class.  
+causing execute() from the addsimpletask Concrete Command class to be called and setting a new Task object inside the vector of the project  
+Then the user will see the Task menu from the method simpleMenu() from the Menu class  
+n-name *you must enter a name  
+d-description  
+t-deadline  
+b-status  
+q-I'm done entering info 
+
+The user wants to name their subtask, so they will enter “n”  
+Then the user will enter the desired name and the readInput(string input) method in the menu class will be called and store this name under the private variable string userinput.  
+Then the setCommand() method from the menu class and will set the private variable TaskCommand* setCommand to the changetaskname Concrete Command class.  
+Then execute() from the changetaskname Concrete Command class will be called which will call addName() in the Task class.  
+
+Then the user will see the Task menu from the method simpleMenu() from the Menu class  
+n-name *you must enter a name  
+d-description  
+t-deadline  
+b-status  
+q-I'm done entering info 
+
+Then the user has finished making their subtask so they enter “q”  
+Then the user will see the project menu from the method complexMenu() from the Menu class  
+n-name *you must enter a name  
+d-description  
+t-deadline  
+b-status  
+c- project subtask  
+s-simple subtask  
+q-I’m done entering info 
+
+The user has finished creating subtasks and entering information for their project so they call “q”  
+The user will see the general menu from the method generalMenu() from the Menu class  
+TASK SCHEDULER  
+a- add simple task  
+p- add project  
+o- print my list  
+e- edit task  
+q-quit 
+
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
  > * Before the meeting you should perform a sprint plan like you did in Phase II
