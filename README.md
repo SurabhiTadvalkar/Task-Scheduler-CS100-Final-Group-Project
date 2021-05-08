@@ -48,9 +48,7 @@ It creates an object, specifically a single task, which can have a name, descrip
 
  * The setStatus() function will allow the user to set whether a task is finished or not
 
-Project class - Composite:
-
-It creates an object which can hold the same values as Task, a closest deadline, and a list of tasks within the project (“subtask” feature). The list of tasks within the project is a vector of Tasks pointers.
+Project class - Composite: It creates an object which can hold the same values as Task, a closest deadline, and a list of tasks within the project (“subtask” feature). The list of tasks within the project is a vector of Tasks pointers.
 
  * The closest deadline will be found among the subtasks of a project to set an overall deadline for the project if the user has not specified the deadline. The findClosestDeadline() function will return the closest deadline
 
@@ -67,7 +65,7 @@ Command Design Pattern:
 ![cs100project_command](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/command.png)
 (look in the images folder for a better picture)
 
-For our task scheduler, one of the design patterns we decided on was the command design pattern. We used this pattern in order to create our “undo” feature. The structure breaks down as such:
+For our task scheduler, one of the design patterns we decided on was the command design pattern. We used this pattern in order to create our “undo” feature and to edit/add information to the tasks and projects. The structure breaks down as such:
 
 Menu class - Invoker: \
 ![cs100project_invoker](https://user-images.githubusercontent.com/77246269/117521322-088c4b80-af62-11eb-9186-c843e44fa199.png)
@@ -105,18 +103,18 @@ ed - edit desc \
 et - edit deadline \
 eb - change status
 
-In setCommand(TaskCommand* Command), it will look at the string userinput and determine which Concrete Command should be called. For example, if a user looks at the general menu and then type in “a”, it will set the private variable TaskCommand* setCommand to point to an addsimpletask object. 
+In setCommand(TaskCommand* Command), it will look at the string userinput and determine which concrete command should be called. For example, if a user looks at the general menu and then type in “a”, it will set the private variable TaskCommand* setCommand to point to an addsimpletask object. 
 
 TaskCommand - command interface and all of its associated concrete commands: \
 ![cs100projectConcreteCommands](https://user-images.githubusercontent.com/77246269/117521653-cb28bd80-af63-11eb-9bd5-4b1f952e2b38.png) \
-TaskCommand is the abstract base class for all of the Concrete Commands, it consists of two methods, execute() and unexecute().
+TaskCommand is the abstract base class for all of the concrete commands, it consists of two methods, execute() and unexecute().
 
-addsimpletask - Concrete Command, adds one task to the task scheduler \
-addcomplextask -Concrete Command, adds one “complex” task, or a project, to the task scheduler \
-changetaskname- Concrete Command, changes a partucular task's name \
-Changetaskdeadline- Concrete Command, changes the deadline of a task (note that deadlines are of the form: mm/dd/yyyy) \
-changetaskdescription- Concrete Command, changes the description of a partucular task. \
-printTasks- Concrete Command, prints all tasks in the task scheduler
+addsimpletask - concrete command, adds one task to the task scheduler \
+addcomplextask -concrete command, adds one “complex” task, or a project, to the task scheduler \
+changetaskname- concrete command, changes a partucular task's name \
+changetaskdeadline- concrete command, changes the deadline of a task (note that deadlines are of the form: mm/dd/yyyy) \
+changetaskdescription- concrete command, changes the description of a partucular task. \
+printTasks- concrete command, prints all tasks in the task scheduler
 
 Task class - reciever: \
 ![cs100project_reciver](https://user-images.githubusercontent.com/77246269/117521891-05468f00-af65-11eb-8d6e-7df278ae635e.png) \
@@ -157,8 +155,8 @@ s-simple subtask
 q-I’m done entering info 
 
 The user wants to create a simple subtask for their project, so they will enter “s” \
-Then the setCommand() method from the menu class and will set the private variable TaskCommand* setCommand to the addsimpletaskConcrete Command class.  
-causing execute() from the addsimpletask Concrete Command class to be called and setting a new Task object inside the vector of the project  
+Then the setCommand() method from the menu class and will set the private variable TaskCommand* setCommand to the addsimpletask concrete command class.  
+causing execute() from the addsimpletask concrete command class to be called and setting a new Task object inside the vector of the project  
 Then the user will see the Task menu from the method simpleMenu() from the Menu class  
 n-name *you must enter a name  
 d-description  
@@ -168,8 +166,8 @@ q-I'm done entering info
 
 The user wants to name their subtask, so they will enter “n”  
 Then the user will enter the desired name and the readInput(string input) method in the menu class will be called and store this name under the private variable string userinput.  
-Then the setCommand() method from the menu class and will set the private variable TaskCommand* setCommand to the changetaskname Concrete Command class.  
-Then execute() from the changetaskname Concrete Command class will be called which will call addName() in the Task class.  
+Then the setCommand() method from the menu class and will set the private variable TaskCommand* setCommand to the changetaskname concrete command class.  
+Then execute() from the changetaskname concrete command class will be called which will call addName() in the Task class.  
 
 Then the user will see the Task menu from the method simpleMenu() from the Menu class  
 n-name *you must enter a name  
