@@ -58,6 +58,22 @@ out << "q- I'm done entering info" << std::endl;
 EXPECT_EQ(test_output, out.str());
 }
 
+TEST(EditMenu, Output){
+
+Menu* test = new Menu();
+
+testing::internal::CaptureStdout();
+test->editMenu();
+std::string test_output = testing::internal::GetCapturedStdout();
+
+std::ostringstream out;
+out << std::endl;
+out << "en- edit name" << std::endl;
+out << "ed- edit description" << std::endl;
+out << "et- edit deadline" << std::endl;
+out << "eb- change status" << std:: endl;
+EXPECT_EQ(test_output, out.str());
+}
 TEST(UserInput, word){
 
 Menu* test = new Menu();

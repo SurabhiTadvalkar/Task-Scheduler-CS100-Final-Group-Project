@@ -27,7 +27,13 @@ void Menu::generalMenu(){
     std::cout << "e- edit task" << std::endl;
     std::cout << "q- quit" << std::endl;
 }
-void Menu::editMenu(){}
+void Menu::editMenu(){
+    std::cout << std::endl;
+    std::cout << "en- edit name" << std::endl;
+    std::cout << "ed- edit description" << std::endl;
+    std::cout << "et- edit deadline" << std::endl;
+    std::cout << "eb- change status" << std:: endl;
+}
 std::string Menu::UserInput(){
     return userinput;
 }
