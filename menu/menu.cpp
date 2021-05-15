@@ -1,5 +1,4 @@
 #include "menu.hpp"
-#include <iostream>
 
 void Menu::simpleMenu(){}
 void Menu::complexMenu(){}
@@ -12,4 +11,12 @@ void Menu::generalMenu(){
     std::cout << "q- quit" << std::endl;
 }
 void Menu::editMenu(){}
-//void Menu::setCommand(TaskCommand *command){}
+std::string Menu::UserInput(){
+    return userinput;
+}
+void Menu::setUserInput(std::string input){
+    userinput = input;
+}
+//void setCommand(TaskCommand* command){}
+//TaskCommand* Command(){}
+

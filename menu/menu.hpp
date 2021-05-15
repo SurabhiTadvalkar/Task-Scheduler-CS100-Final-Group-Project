@@ -6,12 +6,14 @@ class Menu {
 	std::string userinput;
 	//TaskCommand *setCommand;
     public: 
-	void readInput(std::string input);
 	void simpleMenu();
 	void complexMenu();
 	void generalMenu();
 	void editMenu();
+	std::string UserInput();
+	void setUserInput(std::string input);
 	//void setCommand(TaskCommand *command);
+	//TaskCommand* Command();
 
 };
 #endif//menu.hpp

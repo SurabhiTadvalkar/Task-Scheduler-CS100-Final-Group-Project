@@ -19,6 +19,30 @@ out << "q- quit" << std::endl;
 EXPECT_EQ(test_output,out.str());
 
 }
+TEST(UserInput, word){
+
+Menu* test = new Menu();
+
+test->setUserInput("normal");
+EXPECT_EQ(test->UserInput(), "normal");
+}
+
+TEST(UserInput, character){
+
+Menu* test = new Menu();
+
+test->setUserInput("a");
+EXPECT_EQ(test->UserInput(), "a");
+}
+
+TEST(UserInput, phrase){
+
+Menu* test = new Menu();
+
+test->setUserInput("A dime a dozen");
+EXPECT_EQ(test->UserInput(), "A dime a dozen");
+}
+
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
