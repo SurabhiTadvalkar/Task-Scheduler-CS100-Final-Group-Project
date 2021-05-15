@@ -1,8 +1,16 @@
 #include "menu.hpp"
 
-void Menu::simpleMenu(){}
+void Menu::simpleMenu(){
+    std::cout <<  std::endl;
+    std::cout << "n- name *you must enter a name" << std::endl;
+    std::cout << "d- description" << std::endl;
+    std::cout << "t- deadline"<< std::endl;
+    std::cout << "b- status" << std::endl;
+    std::cout << "q- I'm done entering info" << std::endl;
+}
 void Menu::complexMenu(){}
 void Menu::generalMenu(){
+    std::cout << std::endl;
     std::cout << "TASK SCHEDULER" << std::endl;
     std::cout << "a- add simple task" << std::endl;
     std::cout << "p- add project" << std::endl;
