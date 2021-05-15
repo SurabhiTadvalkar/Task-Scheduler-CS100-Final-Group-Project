@@ -38,6 +38,26 @@ out << "q- I'm done entering info" << std::endl;
 EXPECT_EQ(test_output, out.str());
 }
 
+TEST(ComplexMenu, Output){
+
+Menu* test = new Menu();
+
+testing::internal::CaptureStdout();
+test->complexMenu();
+std::string test_output = testing::internal::GetCapturedStdout();
+
+std::ostringstream out;
+out <<  std::endl;
+out << "n- name *you must enter a name" << std::endl;
+out << "d- description" << std::endl;
+out << "t- deadline"<< std::endl;
+out << "b- status" << std::endl;
+out << "c- project subtask" << std::endl;
+out << "s- simple subtask" << std::endl;
+out << "q- I'm done entering info" << std::endl;
+EXPECT_EQ(test_output, out.str());
+}
+
 TEST(UserInput, word){
 
 Menu* test = new Menu();

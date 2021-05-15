@@ -8,7 +8,16 @@ void Menu::simpleMenu(){
     std::cout << "b- status" << std::endl;
     std::cout << "q- I'm done entering info" << std::endl;
 }
-void Menu::complexMenu(){}
+void Menu::complexMenu(){
+    std::cout <<  std::endl;
+    std::cout << "n- name *you must enter a name" << std::endl;
+    std::cout << "d- description" << std::endl;
+    std::cout << "t- deadline"<< std::endl;
+    std::cout << "b- status" << std::endl;
+    std::cout << "c- project subtask" << std::endl;
+    std::cout << "s- simple subtask" << std::endl;
+    std::cout << "q- I'm done entering info" << std::endl;
+}
 void Menu::generalMenu(){
     std::cout << std::endl;
     std::cout << "TASK SCHEDULER" << std::endl;
