@@ -1,4 +1,4 @@
-#include "TaskMock.hpp"
+#include "./TaskMock.hpp"
 
 void TaskMock::print() {
 	testVar = 1; 

@@ -3,16 +3,15 @@
 
 #include <string>
 
-#include "taskcommand.hpp"
+#include "./taskcommand.hpp"
 
 class changetaskname : public TaskCommand {
 public:
-    changetaskname(Tasks* task, std::string name) : setTask(task), setName(name) {}
+    changetaskname(Tasks* task, std::string name);
     virtual void execute();
     virtual void unexecute();
 
 private:
-    Tasks* setTask;
     std::string setName; 
 };
 

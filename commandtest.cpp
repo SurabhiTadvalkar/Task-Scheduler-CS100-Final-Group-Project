@@ -1,22 +1,24 @@
 #include "gtest/gtest.h"
 
+#include "taskmock/Tasks.hpp"
 #include "taskmock/TaskMock.hpp"
 
-#include "taskcommandssrc/addcomplextask.cpp" //dont test for now
-#include "taskcommandssrc/changetaskname.cpp"
-#include "taskcommandssrc/changetaskdeadline.cpp"
-#include "taskcommandssrc/changetaskstatus.cpp"
-#include "taskcommandssrc/changetaskdescription.cpp"
-#include "taskcommandssrc/printTasks.cpp"
+#include "taskcommandsheader/taskcommand.hpp"
+#include "taskcommandsheader/addcomplextask.hpp" //dont test for now
+#include "taskcommandsheader/changetaskname.hpp"
+#include "taskcommandsheader/changetaskdeadline.hpp"
+#include "taskcommandsheader/changetaskstatus.hpp"
+#include "taskcommandsheader/changetaskdescription.hpp"
+#include "taskcommandsheader/printTasks.hpp"
 
-TEST(TaskCommands, changetaskname){
-    TaskMock* myTask = new TaskMock();  
+TEST(TaskCommands, firsttest){
+    Tasks* myTask = new TaskMock();  
 
-    TaskCommand* myCommand = new changetaskname(myTask, "name"); 
+    TaskCommand* myCommand = new changetaskname(myTask, "name");
 
     myCommand->execute(); 
 
-    EXPECT_EQ(myTask.testVar, 5);
+    EXPECT_EQ(myTask->getTestVar(), 5);
 }
 
 

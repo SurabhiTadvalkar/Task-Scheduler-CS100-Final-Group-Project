@@ -1,4 +1,8 @@
-#include "../taskcommandsheader/printTasks.hpp"
+#include "./../taskcommandsheader/printTasks.hpp"
+
+printTasks::printTasks(Tasks* task) {
+    setTask = task;
+}
 
 void printTasks::execute() {
     setTask->print();

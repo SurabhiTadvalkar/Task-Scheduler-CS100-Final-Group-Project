@@ -1,0 +1,19 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+SET(CMAKE_CXX_STANDARD 11)
+
+ADD_SUBDIRECTORY(googletest)
+
+ADD_EXECUTABLE(testcommand
+    commandtest.cpp
+    taskmock/TaskMock.cpp
+    taskcommandssrc/addcomplextask.cpp
+    taskcommandssrc/changetaskname.cpp
+    taskcommandssrc/changetaskdeadline.cpp
+    taskcommandssrc/changetaskstatus.cpp
+    taskcommandssrc/changetaskdescription.cpp
+    taskcommandssrc/printTasks.cpp
+)
+
+TARGET_LINK_LIBRARIES(testcommand gtest)
+TARGET_COMPILE_DEFINITIONS(testcommand PRIVATE gtest_disable_pthreads=ON)

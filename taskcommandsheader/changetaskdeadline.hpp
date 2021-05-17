@@ -3,16 +3,15 @@
 
 #include <string>
 
-#include "taskcommand.hpp"
+#include "./taskcommand.hpp"
 
 class changetaskdeadline : public TaskCommand {
 public:
-    changetaskdeadline(Tasks* task, std::string deadline) : setTask(task), setDeadline(deadline) {}
+    changetaskdeadline(Tasks* task, std::string deadline);
     virtual void execute();
     virtual void unexecute();
 
 private:
-    Tasks* setTask;
     std::string setDeadline;
 };
 
