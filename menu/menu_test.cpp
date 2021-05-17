@@ -153,6 +153,39 @@ TEST(ExecuteCommand, ConcreteCommand2){
 
 }
 
+TEST(UnexecuteCommand, ConcreteCommand1){
+
+    Menu* test = new Menu();
+    TaskCommand* taskcommand = new ConcreteCommand1Mock();
+
+    test->setCommand(taskcommand);
+
+    testing::internal::CaptureStdout();
+    test->UnexecuteCommand();
+    std::string test_output = testing::internal::GetCapturedStdout();
+
+    std::ostringstream out;
+    out << "ConcreteCommand1Mock unexecuted" << std::endl;
+    EXPECT_EQ(test_output, out.str());
+
+}
+
+TEST(UnexecuteCommand, ConcreteCommand2){
+
+    Menu* test = new Menu();
+    TaskCommand* taskcommand = new ConcreteCommand2Mock();
+
+    test->setCommand(taskcommand);
+
+    testing::internal::CaptureStdout();
+    test->UnexecuteCommand();
+    std::string test_output = testing::internal::GetCapturedStdout();
+
+    std::ostringstream out;
+    out << "ConcreteCommand2Mock unexecuted" << std::endl;
+    EXPECT_EQ(test_output, out.str());
+
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
