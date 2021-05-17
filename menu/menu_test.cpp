@@ -1,5 +1,8 @@
 #include "gtest/gtest.h"
 #include "menu.cpp"
+#include "mocks/TaskCommand.hpp"
+#include "mocks/ConcreteCommand1Mock.hpp"
+#include "mocks/ConcreteCommand2Mock.hpp"
 
 TEST(GeneralMenu, Output){
 
@@ -76,26 +79,44 @@ EXPECT_EQ(test_output, out.str());
 }
 TEST(UserInput, word){
 
-Menu* test = new Menu();
+    Menu* test = new Menu();
 
-test->setUserInput("normal");
-EXPECT_EQ(test->UserInput(), "normal");
+    test->setUserInput("normal");
+    EXPECT_EQ(test->UserInput(), "normal");
 }
 
 TEST(UserInput, character){
 
-Menu* test = new Menu();
+    Menu* test = new Menu();
 
-test->setUserInput("a");
-EXPECT_EQ(test->UserInput(), "a");
+    test->setUserInput("a");
+    EXPECT_EQ(test->UserInput(), "a");
 }
 
 TEST(UserInput, phrase){
 
-Menu* test = new Menu();
+    Menu* test = new Menu();
 
-test->setUserInput("A dime a dozen");
-EXPECT_EQ(test->UserInput(), "A dime a dozen");
+    test->setUserInput("A dime a dozen");
+    EXPECT_EQ(test->UserInput(), "A dime a dozen");
+}
+
+TEST(SetterGetterTaskCommand, ConcreteCommand1){
+
+    Menu* test = new Menu();
+    TaskCommand* taskcommand = new ConcreteCommand1Mock();
+   
+    test->setCommand(taskcommand);
+    EXPECT_EQ(test->Command(), taskcommand); 
+}
+
+TEST(SetterGetterTaskCommand, ConcreteCommand2){
+
+    Menu* test = new Menu();
+    TaskCommand* taskcommand = new ConcreteCommand2Mock();
+
+    test->setCommand(taskcommand);
+    EXPECT_EQ(test->Command(), taskcommand);
 }
 
 

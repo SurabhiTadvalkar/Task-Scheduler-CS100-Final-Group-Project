@@ -40,6 +40,6 @@ std::string Menu::UserInput(){
 void Menu::setUserInput(std::string input){
     userinput = input;
 }
-//void setCommand(TaskCommand* command){}
-//TaskCommand* Command(){}
+void Menu::setCommand(TaskCommand *command){taskcommand = command;}
+TaskCommand* Menu::Command(){return taskcommand;}
 

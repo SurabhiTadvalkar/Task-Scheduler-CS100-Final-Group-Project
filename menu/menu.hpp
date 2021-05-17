@@ -1,10 +1,14 @@
 #ifndef __MENU_HPP__
 #define __MENU_HPP__
 
+#include "../menu/mocks/TaskCommand.hpp"
+//#include "../taskcommandsheader/taskcommand.hpp"
+#include <iostream>
+
 class Menu {
     private:
 	std::string userinput;
-	//TaskCommand *setCommand;
+	TaskCommand *taskcommand;
     public: 
 	void simpleMenu();
 	void complexMenu();
@@ -12,8 +16,8 @@ class Menu {
 	void editMenu();
 	std::string UserInput();
 	void setUserInput(std::string input);
-	//void setCommand(TaskCommand *command);
-	//TaskCommand* Command();
+	void setCommand(TaskCommand *command);
+	TaskCommand* Command();
 
 };
 #endif//menu.hpp
