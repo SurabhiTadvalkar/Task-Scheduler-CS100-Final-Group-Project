@@ -18,6 +18,8 @@ class Menu {
 	void setUserInput(std::string input);
 	void setCommand(TaskCommand *command);
 	TaskCommand* Command();
+	void ExecuteCommand();
+	void UnexecuteCommand();
 
 };
 #endif//menu.hpp

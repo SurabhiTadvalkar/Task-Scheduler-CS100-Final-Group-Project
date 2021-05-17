@@ -34,12 +34,9 @@ void Menu::editMenu(){
     std::cout << "et- edit deadline" << std::endl;
     std::cout << "eb- change status" << std:: endl;
 }
-std::string Menu::UserInput(){
-    return userinput;
-}
-void Menu::setUserInput(std::string input){
-    userinput = input;
-}
+std::string Menu::UserInput(){return userinput;}
+void Menu::setUserInput(std::string input){userinput = input;}
 void Menu::setCommand(TaskCommand *command){taskcommand = command;}
 TaskCommand* Menu::Command(){return taskcommand;}
-
+void Menu::ExecuteCommand(){taskcommand->execute();}
+void Menu::UnexecuteCommand(){taskcommand->unexecute();}

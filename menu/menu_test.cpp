@@ -119,6 +119,40 @@ TEST(SetterGetterTaskCommand, ConcreteCommand2){
     EXPECT_EQ(test->Command(), taskcommand);
 }
 
+TEST(ExecuteCommand, ConcreteCommand1){
+
+    Menu* test = new Menu();
+    TaskCommand* taskcommand = new ConcreteCommand1Mock();
+
+    test->setCommand(taskcommand);    
+
+    testing::internal::CaptureStdout();
+    test->ExecuteCommand();
+    std::string test_output = testing::internal::GetCapturedStdout();
+
+    std::ostringstream out;
+    out << "ConcreteCommand1Mock executed" << std::endl;
+    EXPECT_EQ(test_output, out.str());
+
+}
+
+TEST(ExecuteCommand, ConcreteCommand2){
+
+    Menu* test = new Menu();
+    TaskCommand* taskcommand = new ConcreteCommand2Mock();
+
+    test->setCommand(taskcommand);
+
+    testing::internal::CaptureStdout();
+    test->ExecuteCommand();
+    std::string test_output = testing::internal::GetCapturedStdout();
+
+    std::ostringstream out;
+    out << "ConcreteCommand2Mock executed" << std::endl;
+    EXPECT_EQ(test_output, out.str());
+
+}
+
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
