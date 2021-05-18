@@ -21,10 +21,10 @@ class Task : public Tasks {
         virtual void addDeadline(string);
         virtual void setStatus(bool );
 
-        virtual string getName();
-        virtual string getDescription();
-        virtual string getDeadline();
-        virtual bool getStatus();
+        string getName();
+        string getDescription();
+        string getDeadline();
+        bool getStatus();
 };
 
 #endif
