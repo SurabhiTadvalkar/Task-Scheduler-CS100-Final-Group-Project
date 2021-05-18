@@ -4,9 +4,20 @@ SET(CMAKE_CXX_STANDARD 11)
 
 ADD_SUBDIRECTORY(googletest)
 
+ADD_EXECUTABLE(testcommand
+    commandtest.cpp
+    taskmock/TaskMock.cpp
+    taskcommandssrc/addcomplextask.cpp
+    taskcommandssrc/changetaskname.cpp
+    taskcommandssrc/changetaskdeadline.cpp
+    taskcommandssrc/changetaskstatus.cpp
+    taskcommandssrc/changetaskdescription.cpp
+    taskcommandssrc/printTasks.cpp
+)
+
 ADD_EXECUTABLE(test menu/menu_test.cpp)
 
 ADD_EXECUTABLE(main main.cpp)
 
-TARGET_LINK_LIBRARIES(test gtest)
-TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
+TARGET_LINK_LIBRARIES(test testcommand gtest)
+TARGET_COMPILE_DEFINITIONS(test testcommand PRIVATE gtest_disable_pthreads=ON)
