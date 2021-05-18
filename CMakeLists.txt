@@ -17,7 +17,14 @@ ADD_EXECUTABLE(testcommand
 
 ADD_EXECUTABLE(test menu/menu_test.cpp)
 
+ADD_EXECUTABLE(testTask Task/Task_test.cpp Task/Task.cpp Tasks/Tasks.cpp)
+
 ADD_EXECUTABLE(main main.cpp)
 
-TARGET_LINK_LIBRARIES(test testcommand gtest)
-TARGET_COMPILE_DEFINITIONS(test testcommand PRIVATE gtest_disable_pthreads=ON)
+TARGET_LINK_LIBRARIES(test gtest)
+TARGET_LINK_LIBRARIES(testTask gtest)
+TARGET_LINK_LIBRARIES(testcommand gtest)
+TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
+TARGET_COMPILE_DEFINITIONS(testTask PRIVATE gtest_disable_pthreads=ON)
+TARGET_COMPILE_DEFINITIONS(testcommand PRIVATE gtest_disable_pthreads=ON)
+
