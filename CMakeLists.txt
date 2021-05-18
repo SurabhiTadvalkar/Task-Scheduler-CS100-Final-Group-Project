@@ -15,5 +15,9 @@ ADD_EXECUTABLE(testcommand
     taskcommandssrc/printTasks.cpp
 )
 
-TARGET_LINK_LIBRARIES(testcommand gtest)
-TARGET_COMPILE_DEFINITIONS(testcommand PRIVATE gtest_disable_pthreads=ON)
+ADD_EXECUTABLE(test menu/menu_test.cpp)
+
+ADD_EXECUTABLE(main main.cpp)
+
+TARGET_LINK_LIBRARIES(test testcommand gtest)
+TARGET_COMPILE_DEFINITIONS(test testcommand PRIVATE gtest_disable_pthreads=ON)

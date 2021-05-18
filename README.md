@@ -23,12 +23,12 @@ A task schedulers handles a user's schedule and resposiblities which can change 
  * [googletest](https://github.com/google/googletest.git)  - for unit testing
 
 ## Class Diagram
-![cs100project](https://user-images.githubusercontent.com/77246269/117520986-2d7fbf00-af60-11eb-905c-c35df3e685f6.png)
+![projectumldiagram](https://user-images.githubusercontent.com/77246269/118344175-cde65e00-b4e1-11eb-84c6-b1c0392debf9.png)
 This is the overarching UML diagram for our task scheduler project. Details can be found below. 
 
 Composite Design Pattern: 
 
-![cs100project_composite](https://user-images.githubusercontent.com/77246269/117521080-b3036f00-af60-11eb-99b5-53e9d014dc17.png)
+![compositepattern](https://user-images.githubusercontent.com/77246269/118344212-05eda100-b4e2-11eb-816e-f43d9f3ce43c.png)
 
 For our task scheduler, one of the design patterns we decided on was the composite design pattern. We used this pattern in order to create our “subtask” feature. The structure breaks down as such 
 
@@ -62,13 +62,13 @@ Project class - Composite: It creates an object which can hold the same values a
 
 Command Design Pattern: 
 
-![cs100project_command](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/command.png)
+![commandpattern](https://user-images.githubusercontent.com/77246269/118344266-32a1b880-b4e2-11eb-9199-0990282f0292.png)
 (look in the images folder for a better picture)
 
 For our task scheduler, one of the design patterns we decided on was the command design pattern. We used this pattern in order to create our “undo” feature and to edit/add information to the tasks and projects. The structure breaks down as such:
 
 Menu class - Invoker: \
-![cs100project_invoker](https://user-images.githubusercontent.com/77246269/117521322-088c4b80-af62-11eb-9186-c843e44fa199.png)
+![menuclassinvoker](https://user-images.githubusercontent.com/77246269/118344289-506f1d80-b4e2-11eb-8cfd-5a958164b4fa.png)
 
 The menu class has six methods.
 In the first method, readInput(string input), it will simply take the user’s input and store it in the the class under the private variable string userinput
@@ -106,7 +106,7 @@ eb - change status
 In setCommand(TaskCommand* Command), it will look at the string userinput and determine which concrete command should be called. For example, if a user looks at the general menu and then type in “a”, it will set the private variable TaskCommand* setCommand to point to an addsimpletask object. 
 
 TaskCommand - command interface and all of its associated concrete commands: \
-![cs100projectConcreteCommands](https://user-images.githubusercontent.com/77246269/117521653-cb28bd80-af63-11eb-9bd5-4b1f952e2b38.png) \
+![taskcommandconcandabs](https://user-images.githubusercontent.com/77246269/118344407-b0fe5a80-b4e2-11eb-875a-2f57c9fc788c.png) \
 TaskCommand is the abstract base class for all of the concrete commands, it consists of two methods, execute() and unexecute().
 
 addsimpletask - concrete command, adds one task to the task scheduler \
@@ -117,7 +117,7 @@ changetaskdescription- concrete command, changes the description of a partucular
 printTasks- concrete command, prints all tasks in the task scheduler
 
 Task class - reciever: \
-![cs100project_reciver](https://user-images.githubusercontent.com/77246269/117521891-05468f00-af65-11eb-8d6e-7df278ae635e.png) \
+![tasksreciever](https://user-images.githubusercontent.com/77246269/118344431-cd9a9280-b4e2-11eb-905f-620961642615.png) \
 Tasks - this class functions as the receiver for the command design pattern, in addition to functioning as the component for the composite design pattern 
 
 An example of how the classes interact:
