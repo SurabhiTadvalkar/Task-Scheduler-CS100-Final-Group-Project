@@ -10,5 +10,5 @@ void changetaskdescription::execute() {
 }
 
 void changetaskdescription::unexecute() {
-    //todo
+    setTask->addDescription(""); 
 }

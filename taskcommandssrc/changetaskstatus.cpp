@@ -10,5 +10,5 @@ void changetaskstatus::execute() {
 }
 
 void changetaskstatus::unexecute() {
-    //todo
+    setTask->setStatus(false); //by default a task status is set to false
 }

@@ -10,5 +10,5 @@ void changetaskdeadline::execute() {
 }
 
 void changetaskdeadline::unexecute() {
-    //todo
+    setTask->addDeadline(""); 
 }
