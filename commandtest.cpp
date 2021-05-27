@@ -4,7 +4,7 @@
 #include "taskmock/TaskMock.hpp"
 
 #include "taskcommandsheader/taskcommand.hpp"
-#include "taskcommandsheader/addcomplextask.hpp" //dont test for now
+#include "taskcommandsheader/addtask.hpp" 
 #include "taskcommandsheader/changetaskname.hpp"
 #include "taskcommandsheader/changetaskdeadline.hpp"
 #include "taskcommandsheader/changetaskstatus.hpp"
