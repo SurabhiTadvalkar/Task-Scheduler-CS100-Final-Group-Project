@@ -2,7 +2,7 @@
 
 #include "taskmock/Tasks.hpp"
 #include "taskmock/TaskMock.hpp"
-#include "Project.hpp" 
+#include "taskmock/ProjectMock.hpp" 
 
 #include "taskcommandsheader/taskcommand.hpp"
 #include "taskcommandsheader/addtask.hpp" 
@@ -52,7 +52,7 @@ TEST(TaskCommands, changetaskdescription) {
     EXPECT_EQ(myTask->getTestVar(), 4);
 }
 
-TEST(TaskCommands, changetaskname){
+TEST(TaskCommands, changetaskname) {
     Tasks* myTask = new TaskMock();
 
     TaskCommand* myCommand = new changetaskname(myTask, "name");

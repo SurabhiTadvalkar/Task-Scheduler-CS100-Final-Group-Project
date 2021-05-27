@@ -1,4 +1,4 @@
-#include "Project.hpp"
+#include "ProjectMock.hpp"
 
 void Project::print() {
 	testVar = 1;
