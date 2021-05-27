@@ -22,6 +22,11 @@ class Tasks {
         virtual void addDeadline(string _deadline) = 0;
         virtual void setStatus(bool _status) = 0;
 
+        virtual string getName() = 0;
+        virtual string getDescription() = 0;
+        virtual string getDeadline() = 0;
+        virtual bool getStatus() = 0;
+        
 };
 
 #endif
