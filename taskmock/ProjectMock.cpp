@@ -1,33 +1,33 @@
 #include "ProjectMock.hpp"
 
-void Project::print() {
+void ProjectMock::print() {
 	testVar = 1;
 }
 
-void Project::addDeadline(std::string deadline) {
+void ProjectMock::addDeadline(std::string deadline) {
 	testVar = 2;
 }
 
-void Project::setStatus(bool status) {
+void ProjectMock::setStatus(bool status) {
 	testVar = 3;
 }
 
-void Project::addDescription(std::string description) {
+void ProjectMock::addDescription(std::string description) {
 	testVar = 4;
 }
 
-void Project::addName(std::string name) {
+void ProjectMock::addName(std::string name) {
 	testVar = 5;
 }
 
-void Project::addTask(Tasks* task) {
+void ProjectMock::addTask(Tasks* task) {
 	testVar = 6;
 }
 
-std::string Project::findClosestDeadline() {
+std::string ProjectMock::findClosestDeadline() {
 
 }
 
-int Project::getTestVar() {
+int ProjectMock::getTestVar() {
 	return testVar;
 }

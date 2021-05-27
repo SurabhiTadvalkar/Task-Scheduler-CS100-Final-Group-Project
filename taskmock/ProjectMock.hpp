@@ -1,12 +1,12 @@
-#ifndef PROJECT_HPP
-#define PROJECT_HPP
+#ifndef PROJECTMOCK_HPP
+#define PROJECTMOCK_HPP
 
 #include "Tasks.hpp" 
 
 #include <string>
 #include <vector>
 
-class Project : public Tasks {
+class ProjectMock : public Tasks {
 public:
     void print();
     void addDeadline(std::string deadline);
@@ -26,4 +26,4 @@ private:
     //for testing 
     int testVar; 
 };
-#endif //Project.hpp 
+#endif //ProjectMock.hpp 
