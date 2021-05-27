@@ -2,6 +2,7 @@
 
 #include "taskmock/Tasks.hpp"
 #include "taskmock/TaskMock.hpp"
+#include "Project.hpp" 
 
 #include "taskcommandsheader/taskcommand.hpp"
 #include "taskcommandsheader/addtask.hpp" 
