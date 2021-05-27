@@ -5,10 +5,10 @@ addtask::addtask(Tasks* childTask, Tasks* parentTask) {
     setParentTask = parentTask; 
 }
 
-void addcomplextask::execute() {
+void addtask::execute() {
     setParentTask->addTask(setTask); 
 }
     
-void addcomplextask::unexecute() {
+void addtask::unexecute() {
     //setParentTask->removeTask(setTask)
 }

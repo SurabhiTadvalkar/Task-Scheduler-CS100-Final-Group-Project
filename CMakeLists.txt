@@ -8,7 +8,7 @@ ADD_EXECUTABLE(testcommand
     commandtest.cpp
     taskmock/TaskMock.cpp
     taskmock/ProjectMock.cpp
-    taskcommandssrc/addcomplextask.cpp
+    taskcommandssrc/addtask.cpp
     taskcommandssrc/changetaskname.cpp
     taskcommandssrc/changetaskdeadline.cpp
     taskcommandssrc/changetaskstatus.cpp

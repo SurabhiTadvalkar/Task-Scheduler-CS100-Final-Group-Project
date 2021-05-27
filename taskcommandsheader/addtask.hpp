@@ -8,6 +8,8 @@ public:
     addtask(Tasks* childTask, Tasks* parentTask);
     virtual void execute(); 
     virtual void unexecute();
+private: 
+    Tasks* setParentTask; 
 };
 
 #endif//addtask.hpp

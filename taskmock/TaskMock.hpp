@@ -10,6 +10,7 @@ public:
     void setStatus(bool status);
     void addDescription(std::string description);
     void addName(std::string name);
+    void addTask(Tasks* task); 
     //fortesting
     int getTestVar();
 };

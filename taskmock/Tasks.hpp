@@ -10,6 +10,7 @@ public:
     virtual void setStatus(bool status) = 0;
     virtual void addDescription(std::string description) = 0;
     virtual void addName(std::string name) = 0;
+    virtual void addTask(Tasks* task) = 0; 
     //fortesting
     virtual int getTestVar() = 0;
 
