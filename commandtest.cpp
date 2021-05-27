@@ -62,7 +62,18 @@ TEST(TaskCommands, changetaskname) {
     EXPECT_EQ(myTask->getTestVar(), 5);
 }
 
-TEST(TaskCommands, mixcommands) {
+TEST(TaskCommands, addtask) {
+    Tasks* myProject = new ProjectMock();
+    Tasks* myTask = new TaskMock();  
+
+    TaskCommand* myCommand = new addtask(myTask, myProject);
+
+    myCommand->execute(); 
+
+    EXPECT_EQ(myProject->getTestVar(), 6); 
+}
+
+TEST(TaskCommands, mixcommandsone) {
     Tasks* myTask = new TaskMock();
     TaskCommand* myCommand = new changetaskname(myTask, "name");
     myCommand->execute();
@@ -71,6 +82,22 @@ TEST(TaskCommands, mixcommands) {
     myCommand = new changetaskstatus(myTask, false); 
     myCommand->execute(); 
     EXPECT_EQ(myTask->getTestVar(), 3);
+}
+
+TEST(TaskCommands, mixcommandstwo) {
+    Tasks* myProject = new ProjectMock();
+    Tasks* myTask = new TaskMock();
+
+    TaskCommand* myCommand1 = new addtask(myTask, myProject);
+
+    myCommand1->execute();
+
+    TaskCommand* myCommand2 = new changetaskdescription(myTask, "description");
+    
+    myCommand2->execute(); 
+
+    EXPECT_EQ(myProject->getTestVar(), 6); 
+    EXPECT_EQ(myTask->getTestVar(), 4);    
 }
 
 int main(int argc, char **argv) {
