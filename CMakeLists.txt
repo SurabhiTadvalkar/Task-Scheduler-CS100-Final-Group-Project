@@ -7,7 +7,8 @@ ADD_SUBDIRECTORY(googletest)
 ADD_EXECUTABLE(testcommand
     commandtest.cpp
     taskmock/TaskMock.cpp
-    taskcommandssrc/addcomplextask.cpp
+    taskmock/ProjectMock.cpp
+    taskcommandssrc/addtask.cpp
     taskcommandssrc/changetaskname.cpp
     taskcommandssrc/changetaskdeadline.cpp
     taskcommandssrc/changetaskstatus.cpp

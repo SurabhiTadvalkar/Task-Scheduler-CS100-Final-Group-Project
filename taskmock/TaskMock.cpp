@@ -20,6 +20,10 @@ void TaskMock::addName(std::string name) {
 	testVar = 5;
 }
 
+void TaskMock::addTask(Tasks* task) {
+	testVar = 6; 
+}
+
 int TaskMock::getTestVar() {
 	return testVar; 
 }
