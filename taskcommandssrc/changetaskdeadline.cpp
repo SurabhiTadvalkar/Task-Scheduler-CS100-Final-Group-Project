@@ -5,6 +5,10 @@ changetaskdeadline::changetaskdeadline(Tasks* task, std::string deadline) {
     setDeadline = deadline; 
 }
 
+changetaskdeadline::changetaskdeadline(Tasks* task) {
+    setTask = task; 
+}
+
 void changetaskdeadline::execute() {
     setTask->addDeadline(setDeadline);
 }

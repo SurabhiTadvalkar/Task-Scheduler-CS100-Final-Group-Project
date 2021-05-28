@@ -5,6 +5,10 @@ changetaskdescription::changetaskdescription(Tasks* task, std::string descriptio
     setDescription = description;
 }
 
+changetaskdescription::changetaskdescription(Tasks* task) {
+    setTask = task;
+}
+
 void changetaskdescription::execute() {
     setTask->addDescription(setDescription);
 }

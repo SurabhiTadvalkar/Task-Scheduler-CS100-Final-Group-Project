@@ -5,6 +5,10 @@ changetaskstatus::changetaskstatus(Tasks* task, bool status) {
     setStatus = status; 
 }
 
+changetaskstatus::changetaskstatus(Tasks* task) {
+    setTask = task; 
+}
+
 void changetaskstatus::execute() {
     setTask->setStatus(setStatus);
 }
