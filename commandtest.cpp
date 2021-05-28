@@ -73,6 +73,46 @@ TEST(TaskCommands, addtask) {
     EXPECT_EQ(myProject->getTestVar(), 6); 
 }
 
+TEST(TaskCommands, changetaskdeadlineUNDO) {
+    Tasks* myTask = new TaskMock(); 
+    Tasks* myProject = new ProjectMock(); 
+
+    TaskCommand* myCommand = new changetaskdeadline(myTask); 
+    myCommand->unexecute();
+    EXPECT_EQ(myTask->getTestVar(), 2);
+    
+    myCommand = new changetaskdeadline(myProject); 
+    myCommand->unexecute(); 
+    EXPECT_EQ(myTask->getTestVar(), 2); 
+}
+
+TEST(TaskCommands, changetaskdescriptionUNDO) {
+    Tasks* myTask = new TaskMock();
+    Tasks* myProject = new ProjectMock();
+
+    TaskCommand* myCommand = new changetaskdescription(myTask);
+    myCommand->unexecute();
+    EXPECT_EQ(myTask->getTestVar(), 4);
+
+    myCommand = new changetaskdescription(myProject);
+    myCommand->unexecute();
+    EXPECT_EQ(myTask->getTestVar(), 4);
+} 
+
+TEST(TaskCommands, changetaskstatusUNDO) {
+    Tasks* myTask = new TaskMock();
+    Tasks* myProject = new ProjectMock();
+
+    TaskCommand* myCommand = new changetaskstatus(myTask);
+    myCommand->unexecute();
+    EXPECT_EQ(myTask->getTestVar(), 3);
+
+    myCommand = new changetaskstatus(myProject);
+    myCommand->unexecute();
+    EXPECT_EQ(myTask->getTestVar(), 3);
+}
+
+
 TEST(TaskCommands, mixcommandsone) {
     Tasks* myTask = new TaskMock();
     TaskCommand* myCommand = new changetaskname(myTask, "name");
