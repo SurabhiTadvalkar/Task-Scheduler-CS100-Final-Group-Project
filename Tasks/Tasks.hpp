@@ -27,11 +27,17 @@ class Tasks {
         void addDescription(string _description);
         void addDeadline(string _deadline);
         void setStatus(bool _status);
+        void setParent(Tasks* task); 
+        virtual void addTask(Tasks* task) {} //default implementation
+        virtual void removeTask(Tasks* targetTask) {} //default implimentation
+        virtual Tasks* findTask(string targetString) { return nullptr; } //defualt implimentation
+         
 
         string getName();
         string getDescription();
         string getDeadline();
         bool getStatus();
+        Tasks* getParent(); 
 
 };
 

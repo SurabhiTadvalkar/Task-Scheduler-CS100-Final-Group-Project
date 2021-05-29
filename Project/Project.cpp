@@ -56,6 +56,7 @@ string Project::findClosestDeadline() {
 }
 
 void Project::addTask(Tasks* task) {
+    task->setParent(this); 
     this->tasks.push_back(task);
 }
 
@@ -91,4 +92,42 @@ void Project::print() {
     }
 }
 
+void Project::removeTask(Tasks* targetComponent) 
+{
+    std::vector<Tasks*>::iterator it;
 
+    for (it = tasks.begin(); it != tasks.end(); it++) {
+        if (*it == targetComponent) {
+            tasks.erase(it);
+                return;
+	}
+	else {
+            (*it)->removeTask(targetComponent);
+	}
+    }
+}
+
+Tasks* Project::findTask(std::string targetString) 
+{
+    if (this->getName() == targetString && this->getParent() == nullptr) {
+	return this; 
+    }
+
+    std::vector<Tasks*>::iterator it;
+
+    for (it = tasks.begin(); it != tasks.end(); it++) {
+	if ((*it)->getName() == targetString) {
+	    return *it;
+	}
+	else {
+	    Tasks* found = (*it)->findTask(targetString);
+
+	    if (found != nullptr) {
+	        return found; 
+	    }
+	}
+			
+    }
+
+    return nullptr; 
+}

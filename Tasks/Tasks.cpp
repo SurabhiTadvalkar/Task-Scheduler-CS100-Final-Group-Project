@@ -6,6 +6,9 @@ Tasks::Tasks()
     description = new string ("");;
     deadline = new string("");
     status = new bool(false);
+
+    myTaskParent = nullptr; 
+    tabCount = 0; 
 }
 
 Tasks::~Tasks() {
@@ -16,11 +19,19 @@ Tasks::~Tasks() {
 }
 
 int Tasks::countTabs(){
-    return tabCount;
+    if (this->myTaskParent != nullptr) {
+        tabCount = 0; 
+
+        for (Tasks* parent = myTaskParent; parent != nullptr; parent = parent->getParent()) {
+            tabCount++;
+        }
+        return tabCount; 
+    }
+    return 0; 
 }
 
 void Tasks::printTabs(){
-    for(int i=0; i<tabCount; i++){
+    for(int i = 0; i < tabCount; i++){
         std::cout << "\t" ;
     }
 
@@ -56,4 +67,12 @@ string Tasks::getDeadline(){
 
 bool Tasks::getStatus(){
     return (*status);
+}
+
+void Tasks::setParent(Tasks* task) {
+    myTaskParent = task; 
+}
+
+Tasks* Tasks::getParent() {
+    return myTaskParent;  
 }
