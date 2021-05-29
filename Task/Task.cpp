@@ -1,4 +1,5 @@
 #include "Task.hpp"
+#include <string>
 
 Task::Task()
 {
