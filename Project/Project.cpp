@@ -63,10 +63,13 @@ void Project::addTask(Tasks* task) {
 void Project::print() {
     if (!(*name).empty() )
     {
+        this->countTabs();
+        this->printTabs();
         cout << "Project: " << (*name) << endl;
 
         if (!(*description).empty() )
         {
+            this->printTabs();
             cout << "Description: " << (*description) << endl;
         }
         if (!(*deadline).empty() )
@@ -74,14 +77,17 @@ void Project::print() {
             if (findClosestDeadline() != "") {
                 (*deadline) = findClosestDeadline();
             }
+            this->printTabs();
             cout << "Deadline: " << (*deadline) << endl;
         }
         if ((*status) == false)
         {
+            this->printTabs();
             cout << "Status: NOT FINISHED" << endl;
         }
         else if ((*status) == true)
         {
+            this->printTabs();
             cout << "Status: FINISHED" << endl;
         }
 
