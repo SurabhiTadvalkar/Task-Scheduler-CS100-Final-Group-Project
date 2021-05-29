@@ -14,25 +14,18 @@ class Project : public Tasks {
         std::vector<Tasks* > tasks;
         string closestDeadline;
 
-        bool isLessThan(string , string );   
-    
+        bool isLessThan(string , string );
+
     public:
-        Project();
+        Project(){}
 
         ~Project();
 
         string findClosestDeadline();
         void addTask(Tasks* );
         virtual void print();
-        virtual void addName(string _name);
-        virtual void addDescription(string _description);
-        virtual void addDeadline(string _deadline);
-        virtual void setStatus(bool _status);
-
-        string getName();
-        string getDescription();
-        string getDeadline();
-        bool getStatus();
 };
 
 #endif
+
+

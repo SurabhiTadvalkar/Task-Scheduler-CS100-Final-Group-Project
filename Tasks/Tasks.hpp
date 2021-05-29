@@ -2,31 +2,37 @@
 #define __TASKS_HPP__
 
 #include <string>
-using std::string;
+#include <iostream>
+using namespace std;
 
 class Tasks {
-    protected: 
-        string name;
-        string description;
-        string deadline;
-        bool status;
+    protected:
+        string* name;
+        string* description;
+        string* deadline;
+        bool* status;
+        Tasks* myTaskParent;
+        int tabCount;
+
+        int countTabs();
+        void printTabs();
 
     public:
         Tasks();
 
-        ~Tasks();
-
+        virtual ~Tasks();
+	Tasks(Tasks&);
         virtual void print() = 0;
-        virtual void addName(string _name) = 0;
-        virtual void addDescription(string _description) = 0;
-        virtual void addDeadline(string _deadline) = 0;
-        virtual void setStatus(bool _status) = 0;
+        void addName(string _name);
+        void addDescription(string _description);
+        void addDeadline(string _deadline);
+        void setStatus(bool _status);
 
-        virtual string getName() = 0;
-        virtual string getDescription() = 0;
-        virtual string getDeadline() = 0;
-        virtual bool getStatus() = 0;
-        
+        string getName();
+        string getDescription();
+        string getDeadline();
+        bool getStatus();
+
 };
 
 #endif
