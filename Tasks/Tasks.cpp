@@ -6,6 +6,7 @@ Tasks::Tasks()
     description = new string ("");;
     deadline = new string("");
     status = new bool(false);
+    myTaskParent = 0;
 }
 
 Tasks::~Tasks() {
@@ -13,6 +14,7 @@ Tasks::~Tasks() {
     delete description;
     delete deadline;
     delete status;
+    delete myTaskParent;
 }
 int Tasks::countTabs(){
     return tabCount;

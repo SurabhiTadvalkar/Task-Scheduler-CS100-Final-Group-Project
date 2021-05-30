@@ -23,17 +23,17 @@ Project::Project(const Project& rhs){
      description = new string(); (*description) = (*rhs.description);
      deadline = new string(); (*deadline) = (*rhs.deadline);
      status = new bool; (*status) = (*rhs.status);
+     myTaskParent = 0;
 
-     vector<Tasks*> cvector;    
-
+     std::vector<Tasks*> cvector;    
      for (int i=0; i< rhs.tasks.size(); ++i){
 	if(  typeid(Project) == typeid( *(rhs.tasks.at(i)))  ){
 	    Project p(  *( dynamic_cast<Project*>(rhs.tasks.at(i)) )  );
-	    cvector.at(i) = &p;
+            cvector.push_back(&p);
 	}
 	else {
 	    Task t( *(dynamic_cast<Task*>(rhs.tasks.at(i))) );
-	    cvector.at(i) = &t;
+	    cvector.push_back(&t);
 	}	
 	    
      }

@@ -15,6 +15,7 @@ Task::Task(const Task& rhs){
 	(*deadline) = (*rhs.deadline);
 	(*description) = (*rhs.description);
 	(*status) = (*rhs.status);
+	myTaskParent = 0;
 }
 
 

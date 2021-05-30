@@ -16,6 +16,8 @@ TEST(TaskClass, Constructor) {
    EXPECT_EQ(testBool, true);
 }
 
+TEST(TaskClassCopyConstructor, h){}
+
 TEST(TaskClassName, AddName) {
    Task* task = new Task();
    task->addName("John Doe");

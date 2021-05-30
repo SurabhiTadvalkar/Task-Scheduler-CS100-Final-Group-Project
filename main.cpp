@@ -3,54 +3,31 @@
 #include "Project/Project.hpp"
 #include <iostream>
 #include <typeinfo>
+
+#include <vector>
 int main(){
 
     Menu* menu = new Menu();
-    Tasks* t1 = new Task();
-    if(typeid(Project)== typeid(*t1)){
-	std::cout << "a" << std::endl;
-}else {std::cout << "b" << std::endl;}
 
-
-
-/*
-     Tasks* t1 = new Task();
-    Tasks* p1 = new Project();
-
-const type_info& ti1 = typeid(*t1);
-const type_info& pi1 = typeid(*p1);
-
-const type_info* ti2 = &ti1;
-const type_info* pi2 = &pi1;
-delete ti2;
-delete pi2;
-
-
-const type_info& ti1 = typeid(*p1);
-const type_inso& pi1 = typeid(*p1);
-
-
-if(ti1 == pi1) {
-std::cout << "task and project are of the same type" << std::endl;
-
-
-}else{std::cout << "different" << std::endl;}
-    */
-
-    //task->addName("Patricia");
-
+    vector<int*> in;
+    vector<int*> nt;
+    in = nt;
+  Tasks* p = new Project();
+    Tasks* p2 = new Project();
+    p->addName("Surabhi");
+    p->addDescription("Surabhi2");
+    p->addDeadline("Surabhi3");
+    p->setStatus(true);
+    std::cout << "aa" << std::endl;
+    dynamic_cast<Project*>(p)->addTask(p2);
+    std::cout << "bb" << std::endl;  
+    Tasks* cp = new Project(*(dynamic_cast<Project*>(p)));
     
-    //std::cout << task->getName() << std::endl;
-    //std::cout << task2.getName() << std::endl<< std::endl;
+    std::cout << "a" << std::endl;
 
-    //task2.addName("Surabhi");
-    //std::cout << task->getName() << std::endl;
-    //std::cout << task2.getName() << std::endl;
-
+    delete cp;
+    std::cout << "b" << std::endl;
+    delete p;
     delete menu;
-    //delete task;
-    //delete task2;
     return 0;
-
-
 }

@@ -36,13 +36,33 @@ TEST(ProjectClassCopyConstructor, Empty_Full_Projects){
     p1->setStatus(true);
 
     EXPECT_FALSE(&(*p1)== &(*p2));
-    EXPECT_STREQ(p2->getName(), "");
-    EXPECT_STREQ(p2->getDescription(),"");
-    EXEPCT_STREQ(p2->getDeadline(), "");
+    EXPECT_EQ(p2->getName(), "");
+    EXPECT_EQ(p2->getDescription(),"");
+    EXPECT_EQ(p2->getDeadline(), "");
     EXPECT_FALSE(p2->getStatus()); 
 
 }
+TEST(ProjectClassCopyConstructor, Empty_Full_Projects2){
+    Tasks* p1 = new Project();
+    Tasks* p2 = new Project(*(dynamic_cast<Project*>(p1)));
 
+    p2->addName("Surabhi");
+    p2->addDescription("Surabhi2");
+    p2->addDeadline("Surabhi3");
+    p2->setStatus(true);
+
+    EXPECT_FALSE(&(*p1)== &(*p2));
+    EXPECT_EQ(p2->getName(), "Surabhi");
+    EXPECT_EQ(p2->getDescription(),"Surabhi2");
+    EXPECT_EQ(p2->getDeadline(), "Surabhi3");
+    EXPECT_TRUE(p2->getStatus());
+
+    EXPECT_EQ(p1->getName(), "");
+    EXPECT_EQ(p1->getDescription(),"");
+    EXPECT_EQ(p1->getDeadline(), "");
+    EXPECT_FALSE(p1->getStatus());
+
+}
 
 TEST(ProjectClassName, AddName) {
    Project* project = new Project();
