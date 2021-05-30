@@ -12,9 +12,9 @@ using std::endl;
 
 class Task : public Tasks {
     public:
-        Task(){}
-        ~Task() {}
-
+        Task();
+        ~Task() ;
+	Task(const Task& rhs);
         virtual void print();
 };
 

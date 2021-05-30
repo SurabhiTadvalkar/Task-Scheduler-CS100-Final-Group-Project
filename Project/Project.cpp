@@ -1,10 +1,15 @@
 #include "Project.hpp"
+#include "../Task/Task.hpp"
+
 #include <string>
 #include <sstream>
+#include <typeinfo>
 
 using std::string;
 using std::cout;
 using std::endl;
+
+Project::Project(){}
 
 Project::~Project()
 {
@@ -12,6 +17,30 @@ Project::~Project()
         delete this->tasks.at(i);
     }
 }
+
+Project::Project(const Project& rhs){
+     name = new string(); (*name) = (*rhs.name);
+     description = new string(); (*description) = (*rhs.description);
+     deadline = new string(); (*deadline) = (*rhs.deadline);
+     status = new bool; (*status) = (*rhs.status);
+
+     vector<Tasks*> cvector;    
+
+     for (int i=0; i< rhs.tasks.size(); ++i){
+	if(  typeid(Project) == typeid( *(rhs.tasks.at(i)))  ){
+	    Project p(  *( dynamic_cast<Project*>(rhs.tasks.at(i)) )  );
+	    cvector.at(i) = &p;
+	}
+	else {
+	    Task t( *(dynamic_cast<Task*>(rhs.tasks.at(i))) );
+	    cvector.at(i) = &t;
+	}	
+	    
+     }
+     tasks = cvector; 
+}
+
+//Project Project::operator = (const Project& rhs){}
 
 bool Project::isLessThan(string lhs, string rhs) {
     string lhsYear = lhs.substr(6, 2);

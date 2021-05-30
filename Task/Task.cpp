@@ -1,6 +1,23 @@
 #include "Task.hpp"
 #include <string>
 
+Task::Task(){}
+
+Task::~Task(){}
+
+Task::Task(const Task& rhs){
+	name = new string();
+	deadline = new string();
+	description = new string();
+	status = new bool();
+
+	(*name) = (*rhs.name);
+	(*deadline) = (*rhs.deadline);
+	(*description) = (*rhs.description);
+	(*status) = (*rhs.status);
+}
+
+
 void Task::print() {
     if (!(*name).empty() )   //tasks need a name
     {

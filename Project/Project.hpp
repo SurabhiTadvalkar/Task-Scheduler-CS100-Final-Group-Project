@@ -17,13 +17,14 @@ class Project : public Tasks {
         bool isLessThan(string , string );
 
     public:
-        Project(){}
+        Project();
 
         ~Project();
-
+	Project(const Project& rhs);
+	//Project operator = (const Project& rhs);
         string findClosestDeadline();
         void addTask(Tasks* );
-        virtual void print();
+        void print();
 };
 
 #endif
