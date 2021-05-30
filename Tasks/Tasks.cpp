@@ -1,24 +1,26 @@
 #include "Tasks.hpp"
 
-Tasks::Tasks()
-{
-	name = new string("");
-	description = new string("");;
-	deadline = new string("");
-	status = new bool(false);
+Tasks::Tasks(){
 
-	myTaskParent = nullptr;
-	tabCount = 0;
+    name = new string("");
+    description = new string ("");;
+    deadline = new string("");
+    status = new bool(false);
+    myTaskParent = nullptr; 
+    tabCount = 0; 
+
 }
 
 Tasks::~Tasks() {
-	delete name;
-	delete description;
-	delete deadline;
-	delete status;
+    delete name;
+    delete description;
+    delete deadline;
+    delete status;
+    delete myTaskParent;
 }
 
 int Tasks::countTabs() {
+
     if (this->myTaskParent != nullptr) {
         tabCount = 0;
 

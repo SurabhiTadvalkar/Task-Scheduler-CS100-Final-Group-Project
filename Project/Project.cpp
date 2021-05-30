@@ -1,17 +1,47 @@
 #include "Project.hpp"
+#include "../Task/Task.hpp"
+
 #include <string>
 #include <sstream>
+#include <typeinfo>
 
 using std::string;
 using std::cout;
 using std::endl;
 
+Project::Project(){}
+
 Project::~Project()
 {
+delete name;
+delete description;
+delete deadline;
+delete status;
+delete myTaskParent;
     for (int i = 0; i < tasks.size(); ++i) {
         delete this->tasks.at(i);
     }
 }
+
+Project::Project(const Project& rhs){
+     name = new string(); (*name) = (*rhs.name);
+     description = new string(); (*description) = (*rhs.description);
+     deadline = new string(); (*deadline) = (*rhs.deadline);
+     status = new bool; (*status) = (*rhs.status);
+     myTaskParent = nullptr;
+     
+     tasks.resize(rhs.tasks.size());
+     for(int i=0; i<rhs.tasks.size(); i++){
+	if(typeid(Project)==typeid(rhs.tasks[i])){
+            tasks[i] = new Project(*(dynamic_cast<Project*>(rhs.tasks[i])) );
+        }
+        else if (typeid(Task)== typeid(rhs.tasks[i])){
+	   tasks[i] = new Task(*(dynamic_cast<Task*>(rhs.tasks[i])) );
+	}
+    }
+}
+
+//Project Project::operator = (const Project& rhs){}
 
 bool Project::isLessThan(string lhs, string rhs) {
     if (lhs == "" || rhs == "") { //needed, otherwise abort() gets called on substr() calls

@@ -10,19 +10,23 @@
 using std::string;
 
 class Project : public Tasks {
-private:
-    std::vector<Tasks* > tasks;
-    string closestDeadline;
-    bool isLessThan(string, string);
+    private:
+        std::vector<Tasks* > tasks;
+        string closestDeadline;
+        bool isLessThan(string , string );
 
-public:
-    Project() {}
-    ~Project();
-    virtual void addTask(Tasks* task);
-    virtual void removeTask(Tasks* targetTask);
-    virtual Tasks* findTask(string targetString);
-    virtual void print();
-    virtual string findClosestDeadline();
+    public:
+        Project();
+
+        ~Project();
+	Project(const Project& rhs);
+	//Project operator = (const Project& rhs);
+        virtual string findClosestDeadline();
+        virtual void addTask(Tasks* task);
+        virtual void removeTask(Tasks* targetTask); 
+        virtual Tasks* findTask(string targetString);
+        virtual void print();
+
 };
 
 #endif

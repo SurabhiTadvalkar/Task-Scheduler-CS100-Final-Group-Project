@@ -22,7 +22,7 @@ ADD_EXECUTABLE(test menu/menu_test.cpp)
 
 ADD_EXECUTABLE(testTask Task/Task_test.cpp Task/Task.cpp Tasks/Tasks.cpp)
 
-ADD_EXECUTABLE(main main.cpp)
+ADD_EXECUTABLE(main Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
 
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_LINK_LIBRARIES(testTask gtest)

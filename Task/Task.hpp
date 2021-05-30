@@ -11,11 +11,12 @@ using std::cout;
 using std::endl;
 
 class Task : public Tasks {
-public:
-    Task() {}
-    ~Task() {}
+    public:
+        Task();
+        ~Task() ;
+	Task(const Task& rhs);
+        virtual void print();
 
-    virtual void print();
 };
 
 #endif
