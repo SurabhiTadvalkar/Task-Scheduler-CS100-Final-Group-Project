@@ -28,18 +28,21 @@ Project::Project(const Project& rhs){
      description = new string(); (*description) = (*rhs.description);
      deadline = new string(); (*deadline) = (*rhs.deadline);
      status = new bool; (*status) = (*rhs.status);
-     myTaskParent = nullptr;
+     tasks = rhs.tasks;
      
-     tasks.resize(rhs.tasks.size());
-     for(int i=0; i<rhs.tasks.size(); i++){
-	if(typeid(Project)==typeid(rhs.tasks[i])){
-            tasks[i] = new Project(*(dynamic_cast<Project*>(rhs.tasks[i])) );
-        }
-        else if (typeid(Task)== typeid(rhs.tasks[i])){
-	   tasks[i] = new Task(*(dynamic_cast<Task*>(rhs.tasks[i])) );
-	}
-    }
+     for (int i=0; i<tasks.size(); i++){
+         if(typeid(Project) == typeid(*rhs.tasks[i])){
+             tasks[i] = new Project(*dynamic_cast<Project*>(rhs.tasks[i]));
+             tasks[i]->setParent(this);
+         }
+         if(typeid(Task)== typeid(*rhs.tasks[i])){
+	     tasks[i] = new Task(*dynamic_cast<Task*>(rhs.tasks[i]));
+             tasks[i]->setParent(this);
+         }
+     }
 }
+   
+
 
 //Project Project::operator = (const Project& rhs){}
 
@@ -134,7 +137,6 @@ void Project::print() {
 	    this->printTabs();
 	    cout << "Status: FINISHED" << endl;
 	}
-
 	for (int i = 0; i < this->tasks.size(); ++i) {
 	    cout << endl;
 	    this->tasks.at(i)->print();
