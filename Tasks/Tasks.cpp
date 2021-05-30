@@ -2,77 +2,76 @@
 
 Tasks::Tasks()
 {
-    name = new string("");
-    description = new string ("");;
-    deadline = new string("");
-    status = new bool(false);
+	name = new string("");
+	description = new string("");;
+	deadline = new string("");
+	status = new bool(false);
 
-    myTaskParent = nullptr; 
-    tabCount = 0; 
+	myTaskParent = nullptr;
+	tabCount = 0;
 }
 
 Tasks::~Tasks() {
-    delete name;
-    delete description;
-    delete deadline;
-    delete status;
+	delete name;
+	delete description;
+	delete deadline;
+	delete status;
 }
 
-int Tasks::countTabs(){
+int Tasks::countTabs() {
     if (this->myTaskParent != nullptr) {
-        tabCount = 0; 
+        tabCount = 0;
 
         for (Tasks* parent = myTaskParent; parent != nullptr; parent = parent->getParent()) {
-            tabCount++;
-        }
-        return tabCount; 
+	    tabCount++;
+	}
+	return tabCount;
     }
-    return 0; 
+    return 0;
 }
 
-void Tasks::printTabs(){
-    for(int i = 0; i < tabCount; i++){
-        std::cout << "\t" ;
+void Tasks::printTabs() {
+    for (int i = 0; i < tabCount; i++) {
+        std::cout << "\t";
     }
-
 }
 
-void Tasks::addName(string _name){
+void Tasks::addName(string _name) {
     (*name) = _name;
 }
 
-void Tasks::addDescription(string _description){
+void Tasks::addDescription(string _description) {
     (*description) = _description;
 }
 
-void Tasks::addDeadline(string _deadline){
+void Tasks::addDeadline(string _deadline) {
     (*deadline) = _deadline;
 }
 
-void Tasks::setStatus(bool _status){
+void Tasks::setStatus(bool _status) {
     (*status) = _status;
 }
 
-string Tasks::getName(){
+string Tasks::getName() {
     return (*name);
 }
 
-string Tasks::getDescription(){
+string Tasks::getDescription() {
     return (*description);
 }
 
-string Tasks::getDeadline(){
+string Tasks::getDeadline() {
     return (*deadline);
 }
 
-bool Tasks::getStatus(){
+bool Tasks::getStatus() {
     return (*status);
 }
 
 void Tasks::setParent(Tasks* task) {
-    myTaskParent = task; 
+    myTaskParent = task;
 }
 
 Tasks* Tasks::getParent() {
-    return myTaskParent;  
+    return myTaskParent;
 }
