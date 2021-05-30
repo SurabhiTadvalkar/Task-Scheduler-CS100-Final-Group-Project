@@ -1,7 +1,7 @@
 #ifndef TASKMOCK_HPP
 #define TASKMOCK_HPP
 
-#include "./Tasks.hpp"
+#include "TasksMock.hpp"
 
 class TaskMock : public Tasks {
 public:

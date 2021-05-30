@@ -1,7 +1,7 @@
 #ifndef TASKCOMMAND_HPP
 #define TASKCOMMAND_HPP
 
-#include "./../taskmock/Tasks.hpp"
+#include "./../taskmock/TasksMock.hpp"
 
 class TaskCommand {
 public:
