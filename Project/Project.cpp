@@ -90,16 +90,20 @@ string Project::findClosestDeadline() {
 }
 
 void Project::addTask(Tasks* task) {
+    task->setParent(this); 
     this->tasks.push_back(task);
 }
 
 void Project::print() {
     if (!(*name).empty() )
     {
+        this->countTabs();
+        this->printTabs();
         cout << "Project: " << (*name) << endl;
 
         if (!(*description).empty() )
         {
+            this->printTabs();
             cout << "Description: " << (*description) << endl;
         }
         if (!(*deadline).empty() )
@@ -107,14 +111,17 @@ void Project::print() {
             if (findClosestDeadline() != "") {
                 (*deadline) = findClosestDeadline();
             }
+            this->printTabs();
             cout << "Deadline: " << (*deadline) << endl;
         }
         if ((*status) == false)
         {
+            this->printTabs();
             cout << "Status: NOT FINISHED" << endl;
         }
         else if ((*status) == true)
         {
+            this->printTabs();
             cout << "Status: FINISHED" << endl;
         }
 
@@ -125,4 +132,42 @@ void Project::print() {
     }
 }
 
+void Project::removeTask(Tasks* targetComponent) 
+{
+    std::vector<Tasks*>::iterator it;
 
+    for (it = tasks.begin(); it != tasks.end(); it++) {
+        if (*it == targetComponent) {
+            tasks.erase(it);
+                return;
+	}
+	else {
+            (*it)->removeTask(targetComponent);
+	}
+    }
+}
+
+Tasks* Project::findTask(std::string targetString) 
+{
+    if (this->getName() == targetString && this->getParent() == nullptr) {
+	return this; 
+    }
+
+    std::vector<Tasks*>::iterator it;
+
+    for (it = tasks.begin(); it != tasks.end(); it++) {
+	if ((*it)->getName() == targetString) {
+	    return *it;
+	}
+	else {
+	    Tasks* found = (*it)->findTask(targetString);
+
+	    if (found != nullptr) {
+	        return found; 
+	    }
+	}
+			
+    }
+
+    return nullptr; 
+}

@@ -23,8 +23,10 @@ class Project : public Tasks {
 	Project(const Project& rhs);
 	//Project operator = (const Project& rhs);
         string findClosestDeadline();
-        void addTask(Tasks* );
-        void print();
+        virtual void addTask(Tasks* task);
+        virtual void removeTask(Tasks* targetTask); 
+        virtual Tasks* findTask(string targetString);
+        virtual void print();
 };
 
 #endif
