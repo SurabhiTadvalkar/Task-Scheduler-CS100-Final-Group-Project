@@ -1,27 +1,43 @@
-#ifndef __TASKS_HPP__
-#define __TASKS_HPP__
+#ifndef __TASKS_H__
+#define __TASKS_H__
 
 #include <string>
-using std::string;
+#include <iostream>
+using namespace std;
 
 class Tasks {
-    protected: 
-        string name;
-        string description;
-        string deadline;
-        bool status;
+protected:
+    string* name;
+    string* description;
+    string* deadline;
+    bool* status;
+    Tasks* myTaskParent;
+    int tabCount;
 
-    public:
-        Tasks();
+    int countTabs();
+    void printTabs();
 
-        ~Tasks();
+public:
+    Tasks();
 
-        virtual void print() = 0;
-        virtual void addName(string _name) = 0;
-        virtual void addDescription(string _description) = 0;
-        virtual void addDeadline(string _deadline) = 0;
-        virtual void setStatus(bool _status) = 0;
+    virtual ~Tasks();
+    Tasks(Tasks&);
+    virtual void print() = 0;
+    void addName(string _name);
+    void addDescription(string _description);
+    void addDeadline(string _deadline);
+    void setStatus(bool _status);
+    void setParent(Tasks* task);
+    virtual void addTask(Tasks* task) {} //default implementation
+    virtual void removeTask(Tasks* targetTask) {} //default implementation
+    virtual Tasks* findTask(string targetString) { return nullptr; } //default implementation
+    virtual string findClosestDeadline() { return ""; } //default implementation
+
+    string getName();
+    string getDescription();
+    string getDeadline();
+    bool getStatus();
+    Tasks* getParent();
 
 };
-
 #endif

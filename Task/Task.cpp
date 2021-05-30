@@ -1,74 +1,56 @@
 #include "Task.hpp"
+#include <string>
 
-Task::Task()
-{
-    this->name = "";
-    this->description = "";
-    this-> deadline = "";
-    this->status = false;
+Task::Task(){}
+
+Task::~Task(){
+    delete name;
+    delete deadline;
+    delete description;
+    delete status;
+    delete myTaskParent;
+}
+
+Task::Task(const Task& rhs){
+	name = new string();
+	deadline = new string();
+	description = new string();
+	status = new bool();
+
+	(*name) = (*rhs.name);
+	(*deadline) = (*rhs.deadline);
+	(*description) = (*rhs.description);
+	(*status) = (*rhs.status);
+	myTaskParent = 0;
 }
 
 
 void Task::print() {
-    if (!name.empty() )   //tasks need a name
+    if (!(*name).empty())   //tasks need a name
     {
-        cout << "Task: " << name << endl;
-    
-        if (!description.empty() ) 
-        {
-            cout << "Description: " << description << endl;
-        }
-        if (!deadline.empty() ) 
-        {
-            cout << "Deadline: " << deadline << endl;
-        }
-        if (status == false) 
-        {
-            cout << "Status: NOT FINISHED" << endl;
-        }
-        else if (status == true) 
-        {
-            cout << "Status: FINISHED" << endl;
-        }
+        this->countTabs();
+	this->printTabs();
+	cout << "Task: " << (*name) << endl;
+
+	if (!(*description).empty())
+	{
+	    this->printTabs();
+	    cout << "Description: " << (*description) << endl;
+	}
+	if (!(*deadline).empty())
+	{
+	    this->printTabs();
+	    cout << "Deadline: " << (*deadline) << endl;
+	}
+	if ((*status) == false)
+	{
+            this->printTabs();
+	    cout << "Status: NOT FINISHED" << endl;
+	}
+	else if ((*status) == true)
+	{
+	    this->printTabs();
+	    cout << "Status: FINISHED" << endl;
+	}
     }
-}
-
-void Task::addName(string _name)
-{
-    this->name = _name;
-}
-
-void Task::addDescription(string _description)
-{
-    this->description = _description;
-}
-
-void Task::addDeadline(string _deadline)
-{
-    this->deadline = _deadline;
-}
-
-void Task::setStatus(bool _status)
-{
-    this->status = _status;
-}
-
-string Task::getName()
-{
-    return this->name;
-}
-
-string Task::getDescription()
-{
-    return this->description;
-}
-
-string Task::getDeadline()
-{
-    return this->deadline;
-}
-
-bool Task::getStatus()
-{
-    return this->status;
 }

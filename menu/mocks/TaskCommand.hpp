@@ -1,7 +1,7 @@
 #ifndef __TASKCOMMAND_HPP__
 #define __TASKCOMMAND_HPP__
 
-#include "Tasks.hpp"
+#include "../../Tasks/Tasks.hpp"
 
 class TaskCommand {
     protected:

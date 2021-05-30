@@ -13,18 +13,10 @@ using std::endl;
 class Task : public Tasks {
     public:
         Task();
-        ~Task() {};
-
+        ~Task() ;
+	Task(const Task& rhs);
         virtual void print();
-        virtual void addName(string );
-        virtual void addDescription(string );
-        virtual void addDeadline(string);
-        virtual void setStatus(bool );
 
-        string getName();
-        string getDescription();
-        string getDeadline();
-        bool getStatus();
 };
 
 #endif
