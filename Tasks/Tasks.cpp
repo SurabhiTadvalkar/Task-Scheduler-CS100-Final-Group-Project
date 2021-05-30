@@ -52,10 +52,6 @@ void Tasks::addDeadline(string _deadline){
 void Tasks::setStatus(bool _status){
     (*status) = _status;
 }
-void Tasks::setParent(Tasks* parent){
-    myTaskParent = parent;
-}
-
 string Tasks::getName(){
     return (*name);
 }

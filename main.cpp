@@ -8,26 +8,20 @@
 int main(){
 
     Menu* menu = new Menu();
-
-    vector<int*> in;
-    vector<int*> nt;
-    in = nt;
-  Tasks* p = new Project();
-    Tasks* p2 = new Project();
-    p->addName("Surabhi");
-    p->addDescription("Surabhi2");
-    p->addDeadline("Surabhi3");
-    p->setStatus(true);
-
-    dynamic_cast<Project*>(p)->addTask(p2);
-  
-    Tasks* cp = new Project(*(dynamic_cast<Project*>(p)));
     
-  
+    Project* master_p = new Project();
+    master_p->addName("master p");
 
-    delete cp;
- 
-    delete p;
+    Tasks* master_p1 = new Project();   
+    master_p1->addName("master p project1");
+    master_p->addTask(master_p1);
+
+    Tasks* master_p11 = new Task();
+    master_p11->addName("master p project1 subtask1");
+   (dynamic_cast<Project*>(master_p1))->addTask(master_p11);
+    
+    Tasks* cmaster_p = new Project(*master_p);
+
     delete menu;
     return 0;
 }

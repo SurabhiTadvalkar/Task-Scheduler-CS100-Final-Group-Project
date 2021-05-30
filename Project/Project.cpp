@@ -28,21 +28,17 @@ Project::Project(const Project& rhs){
      description = new string(); (*description) = (*rhs.description);
      deadline = new string(); (*deadline) = (*rhs.deadline);
      status = new bool; (*status) = (*rhs.status);
-     myTaskParent = 0;
-
-     std::vector<Tasks*> cvector;    
-     for (int i=0; i< rhs.tasks.size(); ++i){
-	if(  typeid(Project) == typeid( *(rhs.tasks.at(i)))  ){
-	    Project p(  *( dynamic_cast<Project*>(rhs.tasks.at(i)) )  );
-            cvector.push_back(&p);
+     myTaskParent = nullptr;
+     
+     tasks.resize(rhs.tasks.size());
+     for(int i=0; i<rhs.tasks.size(); i++){
+	if(typeid(Project)==typeid(rhs.tasks[i])){
+            tasks[i] = new Project(*(dynamic_cast<Project*>(rhs.tasks[i])) );
+        }
+        else if (typeid(Task)== typeid(rhs.tasks[i])){
+	   tasks[i] = new Task(*(dynamic_cast<Task*>(rhs.tasks[i])) );
 	}
-	else {
-	    Task t( *(dynamic_cast<Task*>(rhs.tasks.at(i))) );
-	    cvector.push_back(&t);
-	}	
-	    
-     }
-     tasks = cvector; 
+    }
 }
 
 //Project Project::operator = (const Project& rhs){}
