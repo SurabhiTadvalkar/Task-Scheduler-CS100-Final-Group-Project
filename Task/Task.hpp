@@ -16,6 +16,7 @@ class Task : public Tasks {
         ~Task() ;
 	Task(const Task& rhs);
         virtual void print();
+
 };
 
 #endif

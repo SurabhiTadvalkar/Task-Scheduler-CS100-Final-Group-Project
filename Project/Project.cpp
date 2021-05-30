@@ -44,38 +44,51 @@ Project::Project(const Project& rhs){
 //Project Project::operator = (const Project& rhs){}
 
 bool Project::isLessThan(string lhs, string rhs) {
+    if (lhs == "" || rhs == "") { //needed, otherwise abort() gets called on substr() calls
+        return !(lhs == ""); 
+    }
+
     string lhsYear = lhs.substr(6, 2);
     string rhsYear = rhs.substr(6, 2);
 
     if (lhsYear < rhsYear) {
-        return true;
+	return true;
     }
     else if (lhsYear == rhsYear) {
         string lhsMonth = lhs.substr(0, 2);
-        string rhsMonth = rhs.substr(0, 2);
-        if (lhsMonth < rhsMonth) {
-            return true;
-        }
-        else if (lhsMonth == rhsMonth) {
-            string lhsDay = lhs.substr(3, 2);
-            string rhsDay = rhs.substr(3, 2);
-            if (lhsDay < rhsDay) {
-                return true;
-             }
-        }
+	string rhsMonth = rhs.substr(0, 2);
+	if (lhsMonth < rhsMonth) {
+	    return true;
+	}
+	else if (lhsMonth == rhsMonth) {
+	    string lhsDay = lhs.substr(3, 2);
+	    string rhsDay = rhs.substr(3, 2);
+	    if (lhsDay < rhsDay) {
+	        return true;
+	    }
+	}
     }
 
     return false;
 }
 
+
 string Project::findClosestDeadline() {
-    string closest = tasks.at(0)->getDeadline();
+
+    string closest = this->getDeadline();
 
     for (int i = 0; i < tasks.size(); ++i) {
         string deadlineCpy = tasks.at(i)->getDeadline();
-        if (isLessThan(deadlineCpy, closest)) {
-            closest = tasks.at(i)->getDeadline();
-        }
+	if (isLessThan(deadlineCpy, closest)) {
+	    closest = tasks.at(i)->getDeadline();
+	}
+		
+	string subClosest = tasks.at(i)->findClosestDeadline(); 
+	if (subClosest != "") {
+	    if (isLessThan(subClosest, closest)) {
+	        closest = subClosest; 
+	    }
+	}
     }
 
     if (isLessThan((*deadline), closest)) {
@@ -85,85 +98,86 @@ string Project::findClosestDeadline() {
     return closest;
 }
 
+
 void Project::addTask(Tasks* task) {
-    task->setParent(this); 
+    task->setParent(this);
     this->tasks.push_back(task);
 }
 
 void Project::print() {
-    if (!(*name).empty() )
+    if (!(*name).empty())
     {
         this->countTabs();
-        this->printTabs();
-        cout << "Project: " << (*name) << endl;
+	this->printTabs();
+	cout << "Project: " << (*name) << endl;
 
-        if (!(*description).empty() )
-        {
-            this->printTabs();
-            cout << "Description: " << (*description) << endl;
-        }
-        if (!(*deadline).empty() )
-        {
-            if (findClosestDeadline() != "") {
-                (*deadline) = findClosestDeadline();
-            }
-            this->printTabs();
+	if (!(*description).empty())
+	{
+	    this->printTabs();
+	    cout << "Description: " << (*description) << endl;
+	}
+	if (!(*deadline).empty())
+	{
+	    if (findClosestDeadline() != "") {
+	        (*deadline) = findClosestDeadline();
+	    }
+	    this->printTabs();
             cout << "Deadline: " << (*deadline) << endl;
-        }
-        if ((*status) == false)
-        {
-            this->printTabs();
-            cout << "Status: NOT FINISHED" << endl;
-        }
-        else if ((*status) == true)
-        {
-            this->printTabs();
-            cout << "Status: FINISHED" << endl;
-        }
+	}
+	if ((*status) == false)
+	{
+	    this->printTabs();
+	    cout << "Status: NOT FINISHED" << endl;
+	}
+	else if ((*status) == true)
+	{
+	    this->printTabs();
+	    cout << "Status: FINISHED" << endl;
+	}
 
-        for (int i = 0; i < this->tasks.size(); ++i) {
-            cout << endl;
-            this->tasks.at(i)->print();
-        }
+	for (int i = 0; i < this->tasks.size(); ++i) {
+	    cout << endl;
+	    this->tasks.at(i)->print();
+	}
     }
 }
 
-void Project::removeTask(Tasks* targetComponent) 
+void Project::removeTask(Tasks* targetComponent)
 {
     std::vector<Tasks*>::iterator it;
 
     for (it = tasks.begin(); it != tasks.end(); it++) {
         if (*it == targetComponent) {
-            tasks.erase(it);
-                return;
+	    tasks.erase(it);
+	    return;
 	}
 	else {
-            (*it)->removeTask(targetComponent);
+	    (*it)->removeTask(targetComponent);
 	}
     }
 }
 
-Tasks* Project::findTask(std::string targetString) 
+Tasks* Project::findTask(std::string targetString)
 {
     if (this->getName() == targetString && this->getParent() == nullptr) {
-	return this; 
+        return this;
     }
 
     std::vector<Tasks*>::iterator it;
 
     for (it = tasks.begin(); it != tasks.end(); it++) {
-	if ((*it)->getName() == targetString) {
+        if ((*it)->getName() == targetString) {
 	    return *it;
 	}
 	else {
 	    Tasks* found = (*it)->findTask(targetString);
 
 	    if (found != nullptr) {
-	        return found; 
+	        return found;
 	    }
 	}
-			
+
     }
 
-    return nullptr; 
+    return nullptr;
 }

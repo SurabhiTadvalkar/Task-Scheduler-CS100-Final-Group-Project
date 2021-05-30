@@ -13,7 +13,6 @@ class Project : public Tasks {
     private:
         std::vector<Tasks* > tasks;
         string closestDeadline;
-
         bool isLessThan(string , string );
 
     public:
@@ -22,13 +21,12 @@ class Project : public Tasks {
         ~Project();
 	Project(const Project& rhs);
 	//Project operator = (const Project& rhs);
-        string findClosestDeadline();
+        virtual string findClosestDeadline();
         virtual void addTask(Tasks* task);
         virtual void removeTask(Tasks* targetTask); 
         virtual Tasks* findTask(string targetString);
         virtual void print();
+
 };
 
 #endif
-
-
