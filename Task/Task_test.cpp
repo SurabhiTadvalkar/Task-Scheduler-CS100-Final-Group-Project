@@ -16,7 +16,53 @@ TEST(TaskClass, Constructor) {
    EXPECT_EQ(testBool, true);
 }
 
-TEST(TaskClassCopyConstructor, h){}
+TEST(TaskClassCopyConstructor, EmptyTask){
+    Tasks* p1 = new Task();
+    Tasks* p2 = new Task(*(dynamic_cast<Task*>(p1)));
+
+    EXPECT_FALSE(&(*p1)== &(*p2));
+
+
+}
+
+TEST( TaskClassCopyConstructor, Empty_Full_Task){
+    Tasks* p1 = new Task();
+    Tasks* p2 = new Task(*(dynamic_cast<Task*>(p1)));
+
+    p1->addName("Surabhi");
+    p1->addDescription("Surabhi2");
+    p1->addDeadline("Surabhi2");
+    p1->setStatus(true);
+
+    EXPECT_FALSE(&(*p1)== &(*p2));
+    EXPECT_EQ(p2->getName(), "");
+    EXPECT_EQ(p2->getDescription(),"");
+    EXPECT_EQ(p2->getDeadline(), "");
+    EXPECT_FALSE(p2->getStatus());
+
+}
+TEST(TaskClassCopyConstructor, Empty_Full_Task2){
+    Tasks* p1 = new Task();
+    Tasks* p2 = new Task(*(dynamic_cast<Task*>(p1)));
+
+    p2->addName("Surabhi");
+    p2->addDescription("Surabhi2");
+    p2->addDeadline("Surabhi3");
+    p2->setStatus(true);
+
+    EXPECT_FALSE(&(*p1)== &(*p2));
+    EXPECT_EQ(p2->getName(), "Surabhi");
+    EXPECT_EQ(p2->getDescription(),"Surabhi2");
+    EXPECT_EQ(p2->getDeadline(), "Surabhi3");
+    EXPECT_TRUE(p2->getStatus());
+
+    EXPECT_EQ(p1->getName(), "");
+    EXPECT_EQ(p1->getDescription(),"");
+    EXPECT_EQ(p1->getDeadline(), "");
+    EXPECT_FALSE(p1->getStatus());
+
+}
+
 
 TEST(TaskClassName, AddName) {
    Task* task = new Task();

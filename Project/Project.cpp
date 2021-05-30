@@ -13,6 +13,11 @@ Project::Project(){}
 
 Project::~Project()
 {
+delete name;
+delete description;
+delete deadline;
+delete status;
+delete myTaskParent;
     for (int i = 0; i < tasks.size(); ++i) {
         delete this->tasks.at(i);
     }

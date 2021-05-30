@@ -3,7 +3,13 @@
 
 Task::Task(){}
 
-Task::~Task(){}
+Task::~Task(){
+    delete name;
+    delete deadline;
+    delete description;
+    delete status;
+    delete myTaskParent;
+}
 
 Task::Task(const Task& rhs){
 	name = new string();

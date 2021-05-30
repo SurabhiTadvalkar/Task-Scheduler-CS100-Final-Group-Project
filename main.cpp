@@ -18,15 +18,15 @@ int main(){
     p->addDescription("Surabhi2");
     p->addDeadline("Surabhi3");
     p->setStatus(true);
-    std::cout << "aa" << std::endl;
+
     dynamic_cast<Project*>(p)->addTask(p2);
-    std::cout << "bb" << std::endl;  
+  
     Tasks* cp = new Project(*(dynamic_cast<Project*>(p)));
     
-    std::cout << "a" << std::endl;
+  
 
     delete cp;
-    std::cout << "b" << std::endl;
+ 
     delete p;
     delete menu;
     return 0;
