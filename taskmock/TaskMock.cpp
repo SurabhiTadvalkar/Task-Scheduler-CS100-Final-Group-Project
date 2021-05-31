@@ -15,7 +15,7 @@ TaskMock::TaskMock(const TaskMock& rhs) {
     name = new string();
     deadline = new string();
     description = new string();
-    status = new bool():
+    status = new bool();
 
     (*name) = (*rhs.name);
     (*deadline) = (*rhs.deadline);

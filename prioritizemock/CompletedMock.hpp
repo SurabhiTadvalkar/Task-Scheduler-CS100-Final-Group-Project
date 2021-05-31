@@ -4,7 +4,7 @@
 #include "PrioritizeMock.hpp"
 
 class CompletedMock : public Prioritize {
-Public:
+public:
     CompletedMock(Tasks* task);
     virtual Tasks* sort();
 };

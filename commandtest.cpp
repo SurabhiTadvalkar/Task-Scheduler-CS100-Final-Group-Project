@@ -4,6 +4,10 @@
 #include "taskmock/TaskMock.hpp"
 #include "taskmock/ProjectMock.hpp" 
 
+#include "prioritizemock/PrioritizeMock.hpp"
+#include "prioritizemock/CompletedMock.hpp"
+#include "prioritizemock/SchedulerMock.hpp"
+
 #include "taskcommandsheader/taskcommand.hpp"
 #include "taskcommandsheader/addtask.hpp" 
 #include "taskcommandsheader/changetaskname.hpp"
@@ -13,13 +17,22 @@
 #include "taskcommandsheader/printTasks.hpp"
 
 TEST(TaskCommands, printTasks) {
-    Tasks* myTask = new TaskMock();
+    Tasks* myTask = new TaskMock(); 
 
-    TaskCommand* myCommand = new printTasks(myTask);
+    Tasks* myTask2 = new ProjectMock(); 
 
-    myCommand->execute(); 
+    Prioritize* myStrat = new CompletedMock(myTask); 
+    TaskCommand* myCommand = new printTasks(myStrat);
 
-    EXPECT_EQ(myTask->getTestVar(), 1); 
+    myCommand->execute();
+
+    Prioritize* myStrat2 = new SchedulerMock(myTask2); 
+    TaskCommand* myCommand2 = new printTasks(myStrat2);
+	
+    myCommand2->execute();
+
+    EXPECT_EQ(myTask->getTestVar(), -1);  
+    EXPECT_EQ(myTask2->getTestVar(), 1); 
 }
 
 TEST(TaskCommands, changetaskdeadline) {
@@ -71,6 +84,17 @@ TEST(TaskCommands, addtask) {
     myCommand->execute(); 
 
     EXPECT_EQ(myProject->getTestVar(), 6); 
+}
+
+TEST(TaskCommands, addtaskUNDO) {
+    Tasks* myProject = new ProjectMock(); 
+    Tasks* myTask = new TaskMock(); 
+
+    TaskCommand* myCommand = new addtask(myTask, myProject); 
+
+    myCommand->unexecute(); 
+
+    EXPECT_EQ(myProject->getTestVar(), 7);
 }
 
 TEST(TaskCommands, changetaskdeadlineUNDO) {

@@ -14,7 +14,7 @@ public:
     ProjectMock(); 
     ~ProjectMock(); 
     ProjectMock(const ProjectMock& rhs); 
-    virtual string foundClosestDeadline(); 
+    virtual string findClosestDeadline(); 
     virtual Tasks* findTask(string targetString);
     virtual void print(); 
 

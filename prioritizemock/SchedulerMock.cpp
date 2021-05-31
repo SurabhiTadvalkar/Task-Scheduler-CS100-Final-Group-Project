@@ -1,6 +1,6 @@
 #include "SchedulerMock.hpp"
 #include "../taskmock/ProjectMock.hpp"
-#include "../taskmock/TaskMOck.hpp"
+#include "../taskmock/TaskMock.hpp"
 
 SchedulerMock::SchedulerMock(Tasks* task) {
     myTask = task; 
