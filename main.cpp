@@ -1,34 +1,171 @@
-#include "menu/menu.cpp"
+#include "Tasks/Tasks.hpp"
 #include "Task/Task.hpp"
+#include "taskcommandsheader/addtask.hpp"
+#include "taskcommandsheader/changetaskname.hpp"
+#include "taskcommandsheader/changetaskdescription.hpp"
+#include "taskcommandsheader/changetaskdeadline.hpp"
+#include "taskcommandsheader/changetaskstatus.hpp"
+#include "taskcommandsheader/taskcommand.hpp"
 #include "Project/Project.hpp"
+#include "menu/menu.hpp"
+
+
+#include <string>
 #include <iostream>
-#include <typeinfo>
 
-#include <vector>
-int main(){
+void name(Menu*, Tasks*);
+void description(Menu*, Tasks*);
+void deadline(Menu*, Tasks*);
+void status(Menu*, Tasks*);
 
-    Menu* menu = new Menu(); 
-  /*  Tasks* p3 = new Project();
-    Tasks* p = new Project(); cout << typeid(*p).name()<<endl ;
-    Project p2(); cout << typeid(p2).name() <<endl;
-    if (typeid(*p) == typeid(Project)) {cout << "a" << endl;}
-*/
-    Project* master_p = new Project();
-    master_p->addName("master p");
+Tasks* simpleTask(Menu*);
+Tasks* projectTask(Menu*);
+  
 
-   Tasks* master_p1 = new Project();   
-    master_p1->addName("master p project1");
-    master_p->addTask(master_p1);
-    //cout << master_p1->getName();
-    Tasks* master_p11 = new Task();
-    Tasks* master_p12 = new Project();
-    master_p11->addName("master p project1 subtask1");
-    master_p12->addName("master p project1 project2");
-   (dynamic_cast<Project*>(master_p1))->addTask(master_p11);
-   (dynamic_cast<Project*>(master_p1))->addTask(master_p12); 
-    Tasks* cmaster_p = new Project(*master_p);
-    master_p->print(); std::cout << std::endl << std::endl;
-    cmaster_p->print();
-    delete menu;
+int main() {
+    Menu* menu = new Menu();
+    string input;
+    string userInput;
+
+    while (input != "q") {
+        menu->generalMenu();
+        cin >> input;
+
+        if (input == "a") {
+            simpleTask(menu);    
+        }
+
+        else if (input == "p") {
+            Tasks* project = projectTask(menu);
+            //project->print();  testing purposes
+        }
+       
+        else if (input == "e") {
+            menu->editMenu();
+          
+                
+                
+        
+        }
+    }
+    
+    
+    
     return 0;
+}
+
+Tasks* simpleTask(Menu* menu) {
+    string input;
+
+    Tasks* task = new Task();
+
+    while (input != "q") {
+        menu->simpleMenu();
+        cin >> input;
+
+        if (input == "n") {
+            name(menu, task);
+        }
+        else if (input == "d") {
+            description(menu, task);
+        }
+        else if (input == "t") {
+            deadline(menu, task);
+        }
+        else if (input == "b") {
+            status(menu, task);
+        }
+    }    
+    return task;  
+}
+
+Tasks* projectTask(Menu* menu) {
+    string input;
+
+    Tasks* project = new Project();
+
+     while (input != "q") {
+        menu->complexMenu();
+        cin >> input;
+
+        if (input == "n") {
+            name(menu, project);
+        }
+        else if (input == "d") {
+            description(menu, project);
+        }
+        else if (input == "t") {
+            deadline(menu, project);
+        }
+        else if (input == "b") {
+            status(menu, project);
+        }
+        else if (input == "c") {
+           Tasks* project2 = projectTask(menu);
+           TaskCommand *cmd = new addtask(project2, project);
+           menu->setCommand(cmd);
+           menu->ExecuteCommand();
+        }
+        else if (input == "s") {
+            Tasks* task = simpleTask(menu);
+            TaskCommand *cmd = new addtask(task, project);
+            menu->setCommand(cmd);
+            menu->ExecuteCommand();
+        }
+    }    
+    return project;
+}
+
+void name(Menu* menu, Tasks* task) {
+    string userInput;
+
+    cout << "Enter name: ";
+    cin.ignore();
+    getline(cin, userInput);
+    cout << endl;
+                    
+    menu->setUserInput(userInput);
+    TaskCommand *cmd1 = new changetaskname(task, menu->UserInput());
+    menu->setCommand(cmd1);
+    menu->ExecuteCommand();
+}
+
+void description(Menu* menu, Tasks* task) {
+    string userInput;
+
+    cout << "Enter description: ";
+    cin.ignore();
+    getline(cin, userInput);
+    cout << endl;
+                    
+    menu->setUserInput(userInput);
+    TaskCommand *cmd1 = new changetaskdescription(task, menu->UserInput());
+    menu->setCommand(cmd1);
+    menu->ExecuteCommand();
+}
+
+void deadline(Menu* menu, Tasks* task) {
+    string userInput;
+
+    cout << "Enter deadline: ";
+    cin.ignore();
+    getline(cin, userInput);
+    cout << endl;
+                    
+    menu->setUserInput(userInput);
+    TaskCommand *cmd1 = new changetaskdeadline(task, menu->UserInput());
+    menu->setCommand(cmd1);
+    menu->ExecuteCommand();
+}
+
+void status(Menu* menu, Tasks* task) {
+    bool userInput;
+
+    cout << "Update status: \n0 - Not Finished \n1 - Finished\n";
+    cin >> userInput;
+    cout << endl;
+    
+    TaskCommand *cmd1 = new changetaskstatus(task, userInput);
+    menu->setCommand(cmd1);
+    menu->ExecuteCommand();
 }
