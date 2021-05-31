@@ -5,11 +5,11 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_SUBDIRECTORY(googletest)
 
 ADD_EXECUTABLE(testcommand
-    Tasks/Tasks.cpp
-    Task/Task.cpp
-    Project/Project.cpp
-    Strategy/Prioritize.cpp
-    Strategy/Scheduler.cpp
+#    Tasks/Tasks.cpp
+ #   Task/Task.cpp
+  #  Project/Project.cpp
+   # Strategy/Prioritize.cpp
+   # Strategy/Scheduler.cpp
     commandtest.cpp
     taskmock/TasksMock.cpp
     taskmock/TaskMock.cpp
