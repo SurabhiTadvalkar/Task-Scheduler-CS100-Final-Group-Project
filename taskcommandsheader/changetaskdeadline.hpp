@@ -8,6 +8,7 @@
 class changetaskdeadline : public TaskCommand {
 public:
     changetaskdeadline(Tasks* task, std::string deadline);
+    changetaskdeadline(Tasks* task); 
     virtual void execute();
     virtual void unexecute();
 

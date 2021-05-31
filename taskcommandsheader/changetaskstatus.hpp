@@ -6,6 +6,7 @@
 class changetaskstatus : public TaskCommand {
 public:
     changetaskstatus(Tasks* task, bool status);
+    changetaskstatus(Tasks* task); 
     virtual void execute();
     virtual void unexecute();
 
@@ -13,5 +14,5 @@ private:
     bool setStatus;
 };
 
-#endif //changetaskstatus.h
+#endif //changetaskstatus.hpp
 

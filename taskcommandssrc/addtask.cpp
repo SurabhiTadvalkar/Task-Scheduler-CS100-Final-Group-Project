@@ -10,5 +10,5 @@ void addtask::execute() {
 }
     
 void addtask::unexecute() {
-    //setParentTask->removeTask(setTask)
+    setParentTask->removeTask(setTask);
 }
