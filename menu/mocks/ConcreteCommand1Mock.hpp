@@ -1,7 +1,7 @@
 #ifndef __CONCRETECOMMAND1MOCK_HPP__
 #define __CONCRETECOMMAND1MOCK_HPP__
 
-#include "TaskCommand.hpp"
+#include "../../taskcommandsheader/taskcommand.hpp"
 
 class ConcreteCommand1Mock: public TaskCommand {
     public:
