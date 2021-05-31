@@ -1,11 +1,11 @@
 #include "./../taskcommandsheader/printTasks.hpp"
 
-printTasks::printTasks(Tasks* task) {
-    setTask = task;
+printTasks::printTasks(Prioritize* strategy) {
+    myStrategy = strategy;
 }
 
 void printTasks::execute() {
-    setTask->print();
+    myStrategy->sort()->print();
 }
 
 void printTasks::unexecute() {

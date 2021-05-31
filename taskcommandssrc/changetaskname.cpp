@@ -1,8 +1,8 @@
 #include "./../taskcommandsheader/changetaskname.hpp"
 
 changetaskname::changetaskname(Tasks* task, std::string name) {
-	setTask = task;
-	setName = name;
+    setTask = task;
+    setName = name;
 }
 
 void changetaskname::execute() {

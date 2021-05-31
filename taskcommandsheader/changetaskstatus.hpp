@@ -14,5 +14,5 @@ private:
     bool setStatus;
 };
 
-#endif //changetaskstatus.h
+#endif //changetaskstatus.hpp
 

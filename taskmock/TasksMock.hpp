@@ -2,24 +2,45 @@
 #define TASKS_HPP
 
 #include <string>
+#include <iostream>
+using namespace std;
 
 class Tasks {
-public:
-    virtual void print() = 0; 
-    virtual void addDeadline(std::string deadline) = 0;
-    virtual void setStatus(bool status) = 0;
-    virtual void addDescription(std::string description) = 0;
-    virtual void addName(std::string name) = 0;
-    virtual void addTask(Tasks* task) = 0; 
-    //fortesting
-    virtual int getTestVar() = 0;
-
 protected:
-    std::string name;
-    std::string deadline;
-    std::string description;
-    bool status = 0;
-    //fortesting
-    int testVar = 0;  
+    string* name;
+    string* description;
+    string* deadline;
+    bool* status;
+    Tasks* myTaskParent;
+    int tabCount;
+
+    int countTabs();
+    void printTabs();
+    //for testing
+    int testVar = 0;
+
+public:
+    Tasks();
+
+    virtual ~Tasks();
+    Tasks(Tasks&);
+    virtual void print() = 0;
+    void addName(string _name);
+    void addDescription(string _description);
+    void addDeadline(string _deadline);
+    void setStatus(bool _status);
+    void setParent(Tasks* task);
+    virtual void addTask(Tasks* task);
+    virtual void removeTask(Tasks* targetTask);
+    virtual Tasks* findTask(string targetString) { return nullptr; }
+    virtual string findClosestDeadline() { return ""; } //default implementation
+    //for testing
+    virtual int getTestVar(); 
+
+    string getName();
+    string getDescription();
+    string getDeadline();
+    bool getStatus();
+    Tasks* getParent();
 };
 #endif //Tasks.hpp

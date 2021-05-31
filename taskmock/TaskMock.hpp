@@ -3,15 +3,18 @@
 
 #include "TasksMock.hpp"
 
+#include <iostream>
+#include <string>
+
+using std::string;
+using std::cout; 
+using std::endl;
+
 class TaskMock : public Tasks {
 public:
-    void print();
-    void addDeadline(std::string deadline);
-    void setStatus(bool status);
-    void addDescription(std::string description);
-    void addName(std::string name);
-    void addTask(Tasks* task); 
-    //fortesting
-    int getTestVar();
+    TaskMock();
+    ~TaskMock();
+    TaskMock(const TaskMock& rhs);
+    virtual void print();
 };
 #endif //TaskMock.hpp
