@@ -27,6 +27,20 @@ ADD_EXECUTABLE(testTask Task/Task_test.cpp Task/Task.cpp Tasks/Tasks.cpp)
 
 ADD_EXECUTABLE(main Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
 
+ADD_EXECUTABLE(compositevalgrindcomp
+    valgrindtests/compositetestcomp.cpp 
+    Task/Task.cpp
+    Tasks/Tasks.cpp
+    Project/Project.cpp
+)
+
+ADD_EXECUTABLE(compositevalgrind
+    valgrindtests/compositetest.cpp
+    Task/Task.cpp
+    Tasks/Tasks.cpp
+    Project/Project.cpp
+)
+
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_LINK_LIBRARIES(testTask gtest)
 TARGET_LINK_LIBRARIES(testcommand gtest)

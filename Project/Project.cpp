@@ -13,14 +13,12 @@ Project::Project(){}
 
 Project::~Project()
 {
-delete name;
-delete description;
-delete deadline;
-delete status;
-delete myTaskParent;
-    for (int i = 0; i < tasks.size(); ++i) {
-        delete this->tasks.at(i);
+    std::vector<Tasks*>::iterator it;
+
+    for (it = tasks.begin(); it != tasks.end(); ++it) {
+        delete *it;
     }
+    tasks.clear();
 }
 
 Project::Project(const Project& rhs){
@@ -42,10 +40,6 @@ Project::Project(const Project& rhs){
      }
 }
    
-
-
-//Project Project::operator = (const Project& rhs){}
-
 bool Project::isLessThan(string lhs, string rhs) {
     if (lhs == "" || rhs == "") { //needed, otherwise abort() gets called on substr() calls
         return !(lhs == ""); 
@@ -150,6 +144,7 @@ void Project::removeTask(Tasks* targetComponent)
 
     for (it = tasks.begin(); it != tasks.end(); it++) {
         if (*it == targetComponent) {
+            delete *it;
 	    tasks.erase(it);
 	    return;
 	}

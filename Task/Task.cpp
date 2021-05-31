@@ -3,25 +3,19 @@
 
 Task::Task(){}
 
-Task::~Task(){
-    delete name;
-    delete deadline;
-    delete description;
-    delete status;
-    delete myTaskParent;
-}
+Task::~Task(){}
 
 Task::Task(const Task& rhs){
-	name = new string();
-	deadline = new string();
-	description = new string();
-	status = new bool();
+    name = new string();
+    deadline = new string();
+    description = new string();
+    status = new bool();
 
-	(*name) = (*rhs.name);
-	(*deadline) = (*rhs.deadline);
-	(*description) = (*rhs.description);
-	(*status) = (*rhs.status);
-	myTaskParent = 0;
+    (*name) = (*rhs.name);
+    (*deadline) = (*rhs.deadline);
+    (*description) = (*rhs.description);
+    (*status) = (*rhs.status);
+    myTaskParent = 0;
 }
 
 

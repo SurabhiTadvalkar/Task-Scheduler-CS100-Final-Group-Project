@@ -1,7 +1,6 @@
 #include "Tasks.hpp"
 
 Tasks::Tasks(){
-
     name = new string("");
     description = new string ("");;
     deadline = new string("");
@@ -16,7 +15,6 @@ Tasks::~Tasks() {
     delete description;
     delete deadline;
     delete status;
-    delete myTaskParent;
 }
 
 int Tasks::countTabs() {
