@@ -163,7 +163,7 @@ TEST(ProjectClassDeadline, FindClosestDeadlineDay) {
    project->addTask(task);
    project->addTask(task1);
    
-   EXPECT_EQ(project->findClosestDeadline(), "05/21/21");
+   EXPECT_EQ(project->findClosestDeadline(), "05/19/21");
 }
 
 TEST(ProjectClassDeadline, FindClosestDeadlineYear) {
@@ -176,7 +176,7 @@ TEST(ProjectClassDeadline, FindClosestDeadlineYear) {
    project->addTask(task);
    project->addTask(project1);
 
-   EXPECT_EQ(project->findClosestDeadline(), "05/20/21");
+   EXPECT_EQ(project->findClosestDeadline(), "04/01/20");
 }
 
 TEST(ProjectClassDeadline, FindClosestDeadlineMonth) {
@@ -189,7 +189,7 @@ TEST(ProjectClassDeadline, FindClosestDeadlineMonth) {
    project->addTask(task);
    project->addTask(task1);
 
-   EXPECT_EQ(project->findClosestDeadline(), "05/21/21");
+   EXPECT_EQ(project->findClosestDeadline(), "04/20/21");
 }
 
 TEST(ProjectClassDeadline, FindClosestDeadlineProjectSimple) {
@@ -216,7 +216,7 @@ TEST(ProjectClassDeadline, FindClosestDeadlineProjectSimple) {
    project2->addTask(task2_2);
    project1->addTask(project2);
 
-   EXPECT_EQ(project1->findClosestDeadline(), "05/05/21"); 
+   EXPECT_EQ(project1->findClosestDeadline(), "07/03/00"); 
 }
 
 TEST(ProjectClassDeadline, FindClosestDeadlineProjectComplex) {
@@ -265,7 +265,7 @@ TEST(ProjectClassDeadline, FindClosestDeadlineProjectComplex) {
     project1->addTask(item4_1);
     project1->addTask(item4_2);
 
-    EXPECT_EQ(project1->findClosestDeadline(), "12/29/21");
+    EXPECT_EQ(project1->findClosestDeadline(), "01/11/11");
 }
 
 TEST(ProjectClassStatus, AddStatusFalse) {
