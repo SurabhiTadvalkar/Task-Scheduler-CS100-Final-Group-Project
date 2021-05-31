@@ -7,25 +7,28 @@
 #include <string>
 #include <vector>
 
+#include <typeinfo>
+
 using std::string;
 
 class Project : public Tasks {
     private:
         std::vector<Tasks* > tasks;
         string closestDeadline;
-        bool isLessThan(string , string );
+       
 
     public:
         Project();
 
         ~Project();
 	Project(const Project& rhs);
-	//Project operator = (const Project& rhs);
+	vector<Tasks*>* getTasks();
         virtual string findClosestDeadline();
         virtual void addTask(Tasks* task);
         virtual void removeTask(Tasks* targetTask); 
         virtual Tasks* findTask(string targetString);
         virtual void print();
+	 bool isLessThan(string , string );
 
 };
 

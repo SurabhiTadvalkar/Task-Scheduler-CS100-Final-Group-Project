@@ -44,7 +44,7 @@ Project::Project(const Project& rhs){
    
 
 
-//Project Project::operator = (const Project& rhs){}
+vector<Tasks*>* Project::getTasks(){return &tasks;}
 
 bool Project::isLessThan(string lhs, string rhs) {
     if (lhs == "" || rhs == "") { //needed, otherwise abort() gets called on substr() calls

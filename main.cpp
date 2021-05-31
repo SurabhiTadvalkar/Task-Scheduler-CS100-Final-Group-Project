@@ -5,6 +5,8 @@
 #include <typeinfo>
 
 #include <vector>
+using std::cout;
+using std::endl;
 int main(){
 
     Menu* menu = new Menu(); 
@@ -30,5 +32,16 @@ int main(){
     master_p->print(); std::cout << std::endl << std::endl;
     cmaster_p->print();
     delete menu;
-    return 0;
+ 
+
+vector<Tasks*>* cmaster_ptasks = dynamic_cast<Project*>(cmaster_p)->getTasks();
+cmaster_ptasks->at(0)->addName("Surabhi");
+	for(int i=0; i<cmaster_ptasks->size(); i++){
+		cout << dynamic_cast<Project*>(cmaster_p)->getTasks()->at(i)->getName()<< "  " << cmaster_ptasks->at(i)->getName() << endl;
+                cout << &(dynamic_cast<Project*>(cmaster_p)->getTasks()->at(i))<< "  " << &(cmaster_ptasks->at(i)) << endl;
+
+}
+
+return 0;
+
 }
