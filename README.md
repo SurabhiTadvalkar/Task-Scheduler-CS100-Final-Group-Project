@@ -13,6 +13,10 @@ composite pattern:
 command pattern:
 
 A task schedulers handles a user's schedule and resposiblities which can change frequently. Therefore, it is important that the task scheduler be able to execute that needed flexibilty. A problem that might hinder this capability is being unable to reverse tasks. To combat this, we thought of make a feature that would allow a user to reverse their changes, an "undo" feature. The command design pattern givers the ability to choose a given behavior for a command. This will allow us to alter tasks by encapsulate requests from the user of specific changes. For example, the user could type "undo task edit" in the terminal and that request would be encapsulated and the task would be reverted to the state before the user's edit. 
+
+strategy pattern:
+
+When printing, it is important that the task scheduler prints what the user wants to see. If the user wanted to plan which tasks they should take care of first according to the deadlines, then the task scheduler should print the tasks from the closest deadline to the furthest deadline. If the user wanted to see which tasks they already completed and which tasks need to be done, the task scheduler should print the tasks according to the status of each task. The strategy pattern allows the printing of different criteria to be selected during run time depending on the user's wants. 
  
  tools and languages: 
  * [c++](https://www.cplusplus.com/info/description/)      - main programming language
@@ -23,23 +27,18 @@ A task schedulers handles a user's schedule and resposiblities which can change 
  * [googletest](https://github.com/google/googletest.git)  - for unit testing
 
 ## Class Diagram
-![entireproject](https://user-images.githubusercontent.com/77246269/118706778-9b34b200-b7ce-11eb-9f75-54c7c2a9cee5.png)
+![entireproject](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/overall.png)
 This is the overarching UML diagram for our task scheduler project. Details can be found below. 
 
 Composite Design Pattern: 
 
-![compositepattern](https://user-images.githubusercontent.com/77246269/118706944-cd461400-b7ce-11eb-96f9-d4ada1f604bf.png)
+![compositepattern](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/composite.png)
 
 For our task scheduler, one of the design patterns we decided on was the composite design pattern. We used this pattern in order to create our “subtask” feature. The structure breaks down as such 
 
 Tasks class - Component:
- It defines an interface. Both the Task class and Project class derive from this class. This class will be abstract because all the functions it holds will be pure virtual. 
-
-Task class - Leaf: 
-It creates an object, specifically a single task, which can have a name, description, deadline, and/or status. It holds no objects of its parent class 
-
- * In the print method(), it will list out all the information that has been entered and output it into the terminal
-
+ It defines an interface. Both the Task class and Project class derive from this class. This class will be abstract because it holds the pure virtual function print(). 
+ 
  * The addDeadline() function will allow the user to input a deadline for a task
 
  * The addName() function will allow the user to input a name for a task
@@ -48,27 +47,46 @@ It creates an object, specifically a single task, which can have a name, descrip
 
  * The setStatus() function will allow the user to set whether a task is finished or not
 
+ * The setParent() function will set the current Tasks object's parent pointer
+ 
+ * The following functions are virtual and to be overrided at run time: addTask(), removeTask(), findTask(), and findClosestDeadline(). They are not pure however, as not all of the classes that inherit from this abstract base class need to implement these functions. Instead, we decided to have an "empty" implementation. While we acknowledge that these types of implementations are not good practice, we decided to use them to avoid complications in our design and to keep the composite design consistent.
+
+ * The following getter functions return the specified variables of the Tasks object: getName(), getDescription(), getDeadline(), getStatus(), getParent()
+
+ * The printTabs and countTabs functions are used when printing projects and lists of tasks. Printed tabs denote that a task or project belong to a parent project and this will allow for correct hierarchy of projects and tasks to be printed, while also improving readability
+
+Task class - Leaf: 
+It creates an object, specifically a single task, which can have a name, description, deadline, and/or status. It holds no objects of its parent class 
+
+ * The copy constructor will copy the Task object to allow for use within the strategy pattern when printing
+ 
+ * In the print method(), it will list out all the information that has been entered and output it into the terminal
+
 Project class - Composite: It creates an object which can hold the same values as Task, a closest deadline, and a list of tasks within the project (“subtask” feature). The list of tasks within the project is a vector of Tasks pointers.
 
- * The closest deadline will be found among the subtasks of a project to set an overall deadline for the project if the user has not specified the deadline. The findClosestDeadline() function will return the closest deadline
+ * The copy constructor will copy the Task object to allow for use within the strategy pattern when printing
+ 
+ * In the print method(), it will list out all the information that has been entered and output it into the terminal
 
- * The addDeadline() function will allow the user to input a deadline for a project
+ * The findClosestDeadline() function will return the closest deadline. The closest deadline will be found among the subtasks of a project to set an overall deadline for the project
 
- * The addName() function will allow the user to input a name for a project
+ * The addTask() function will add push a task to the vector of the Project object
 
- * The addDescription() function will allow the user to input a description for a project
+ * The removeTask() function will remove the specified task from the Project object
 
- * The setStatus() function will allow the user to set whether a project is finished or not
+ * The findTask() function will search for the specified task within the Project object and return it if found. If it was not found, it will return a null pointer
+
+ 
 
 Command Design Pattern: 
 
-![commandpattern](https://user-images.githubusercontent.com/77246269/118707075-f36bb400-b7ce-11eb-92c8-bc1ee41a03b4.png)
+![commandpattern](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/command.png)
 (look in the images folder for a better picture)
 
 For our task scheduler, one of the design patterns we decided on was the command design pattern. We used this pattern in order to create our “undo” feature and to edit/add information to the tasks and projects. The structure breaks down as such:
 
 Menu class - Invoker: \
-![menuclass](https://user-images.githubusercontent.com/77246269/118707156-0c746500-b7cf-11eb-8770-67b857a43b98.png)
+![menuclass](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/invoker.png)
 
 The menu class has six methods.
 In the first method, readInput(string input), it will simply take the user’s input and store it in the the class under the private variable string userinput
@@ -106,7 +124,7 @@ eb - change status
 In setCommand(TaskCommand* Command), it will look at the string userinput and determine which concrete command should be called. For example, if a user looks at the general menu and then type in “a”, it will set the private variable TaskCommand* setCommand to point to an addsimpletask object. 
 
 TaskCommand - command interface and all of its associated concrete commands: \
-![taskcommand](https://user-images.githubusercontent.com/77246269/118707272-2ada6080-b7cf-11eb-9746-fa94d90aa158.png) \
+![taskcommand](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/taskCommand.png) \
 TaskCommand is the abstract base class for all of the concrete commands, it consists of two methods, execute() and unexecute().
 
 addsimpletask - concrete command, adds one task to the task scheduler \
@@ -117,7 +135,7 @@ changetaskdescription- concrete command, changes the description of a partucular
 printTasks- concrete command, prints all tasks in the task scheduler
 
 Task class - reciever: \
-![receiver](https://user-images.githubusercontent.com/77246269/118707410-59f0d200-b7cf-11eb-9528-358dc5fc1893.png) \
+![receiver](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/reciever.png) \
 Tasks - this class functions as the receiver for the command design pattern, in addition to functioning as the component for the composite design pattern 
 
 An example of how the classes interact:
@@ -194,6 +212,21 @@ p- add project
 o- print my list  
 e- edit task  
 q-quit 
+
+
+Strategy Design Pattern: 
+
+![strategy](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/strategy.png)
+
+printTasks class - composition
+
+Prioritize class - compositor
+
+Scheduler - concrete strategy 1
+
+Completed - concrete strategy 2
+
+
 
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
