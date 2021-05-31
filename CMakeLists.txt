@@ -41,7 +41,11 @@ ADD_EXECUTABLE(main
         taskcommandssrc/changetaskdescription.cpp 
         taskcommandssrc/changetaskdeadline.cpp 
         taskcommandssrc/changetaskstatus.cpp 
-        Project/Project.cpp
+        taskcommandssrc/printTasks.cpp
+        Project/Project.cpp 
+ 	Strategysrc/Prioritize.cpp 
+	Strategysrc/Completed.cpp 
+	Strategysrc/Scheduler.cpp 
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

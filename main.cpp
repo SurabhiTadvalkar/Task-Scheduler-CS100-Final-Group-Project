@@ -6,55 +6,82 @@
 #include "taskcommandsheader/changetaskdeadline.hpp"
 #include "taskcommandsheader/changetaskstatus.hpp"
 #include "taskcommandsheader/taskcommand.hpp"
+#include "taskcommandsheader/printTasks.hpp"
 #include "Project/Project.hpp"
 #include "menu/menu.hpp"
-
+#include "Strategyheaders/Prioritize.hpp"
+#include "Strategyheaders/Completed.hpp"
+#include "Strategyheaders/Scheduler.hpp"
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 void name(Menu*, Tasks*);
 void description(Menu*, Tasks*);
 void deadline(Menu*, Tasks*);
 void status(Menu*, Tasks*);
 
-Tasks* simpleTask(Menu*);
-Tasks* projectTask(Menu*);
-  
+Tasks* simpleTask(Menu*, vector<Tasks* >);
+Tasks* projectTask(Menu*, vector<Tasks* >);
+void printTask(Menu*, vector<Tasks* >); 
 
 int main() {
     Menu* menu = new Menu();
     string input;
     string userInput;
-
+    vector<Tasks* > taskList;   
+ 
     while (input != "q") {
         menu->generalMenu();
         cin >> input;
 
         if (input == "a") {
-            simpleTask(menu);    
-        }
-
+           Tasks* task = simpleTask(menu, taskList);    
+  	   taskList.push_back(task);       
+	}
+ 
         else if (input == "p") {
-            Tasks* project = projectTask(menu);
-            //project->print();  testing purposes
+            Tasks* project = projectTask(menu, taskList);
+            taskList.push_back(project);
         }
-       
+        else if (input == "o") {
+	    printTask(menu, taskList);
+	}
         else if (input == "e") {
-            menu->editMenu();
-          
-                
-                
-        
+            menu->editMenu();   
         }
     }
     
-    
-    
+      
     return 0;
 }
 
-Tasks* simpleTask(Menu* menu) {
+void printTask(Menu* menu, vector<Tasks* > tasks) {
+    int input;
+
+    cout << "Print options: \n0 - Scheduler \n1 - Completed\n";
+    cin >> input;
+    if (input == 0) {
+        for (int i = 0; i < tasks.size(); ++i) {
+            Scheduler* sched = new Scheduler(tasks.at(i));
+            TaskCommand* cmd = new printTasks(sched);
+            menu->setCommand(cmd);
+            menu->ExecuteCommand();
+        }
+    }
+    else {
+        for (int i = 0; i < tasks.size(); ++i) {
+            Completed* comp = new Completed(tasks.at(i));
+            TaskCommand* cmd = new printTasks(comp);
+            menu->setCommand(cmd);
+            menu->ExecuteCommand();
+        }
+    }
+}
+
+
+Tasks* simpleTask(Menu* menu, vector<Tasks* > list) {
     string input;
 
     Tasks* task = new Task();
@@ -75,11 +102,12 @@ Tasks* simpleTask(Menu* menu) {
         else if (input == "b") {
             status(menu, task);
         }
-    }    
+    }
+    list.push_back(task);   
     return task;  
 }
 
-Tasks* projectTask(Menu* menu) {
+Tasks* projectTask(Menu* menu, vector<Tasks* > list) {
     string input;
 
     Tasks* project = new Project();
@@ -101,18 +129,19 @@ Tasks* projectTask(Menu* menu) {
             status(menu, project);
         }
         else if (input == "c") {
-           Tasks* project2 = projectTask(menu);
+           Tasks* project2 = projectTask(menu, list);
            TaskCommand *cmd = new addtask(project2, project);
            menu->setCommand(cmd);
            menu->ExecuteCommand();
         }
         else if (input == "s") {
-            Tasks* task = simpleTask(menu);
+            Tasks* task = simpleTask(menu, list);
             TaskCommand *cmd = new addtask(task, project);
             menu->setCommand(cmd);
             menu->ExecuteCommand();
         }
-    }    
+    }
+    list.push_back(project);    
     return project;
 }
 
