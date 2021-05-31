@@ -1,8 +1,9 @@
 #include "menu/menu.cpp"
 #include "Task/Task.hpp"
 #include "Project/Project.hpp"
-#include "Strategy/Scheduler.hpp"
-
+#include "Strategyheaders/Scheduler.hpp"
+#include "Strategyheaders/Completed.hpp"
+//#include "Strategyheaders/Prioritize.hpp"
 #include <iostream>
 #include <typeinfo>
 
@@ -25,14 +26,16 @@ int main(){
     master_p1->addName("master p project1");
     master_p->addTask(master_p1);
     master_p1->addDeadline("08/15/02");
-
+    master_p1->setStatus(true);
+    
 Tasks* master_p2 = new Project();
-master_p2->addName("master p project2"); master_p2->addDeadline("08/13/03");
+master_p2->addName("master p project2"); master_p2->addDeadline("08/13/03"); 
 master_p->addTask(master_p2);
 
 Tasks* master_p11 = new Project();
+Tasks* master_p12 = new Task(); master_p12->addName("master p project1 task2"); master_p11->setStatus(true);
 master_p11->addName("master p project1 project1"); master_p11->addDeadline("08/14/02");
-master_p1->addTask(master_p11);
+master_p1->addTask(master_p11); master_p1->addTask(master_p12);
 
 Tasks* cmaster_p = new Project(*master_p);
     //cout << master_p1->getName();
@@ -45,7 +48,9 @@ Tasks* cmaster_p = new Project(*master_p);
     Tasks* cmaster_p = new Project(*master_p);*/
    // master_p->print(); std::cout << std::endl << std::endl;
    // cmaster_p->print();
-Tasks* t = (new Scheduler(cmaster_p))->sort();
+ Tasks* t2 = (new Prioritize(cmaster_p))->sort();
+Tasks* t = (new Completed(cmaster_p))->sort();
+t2->print();
 t->print();
 
  //delete t;delete cmaster_p;  delete master_p;  

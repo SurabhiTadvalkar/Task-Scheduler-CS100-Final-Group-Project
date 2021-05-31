@@ -10,6 +10,7 @@ ADD_EXECUTABLE(testcommand
   #  Project/Project.cpp
    # Strategy/Prioritize.cpp
    # Strategy/Scheduler.cpp
+   #Strategy/Completed.cpp
     commandtest.cpp
     taskmock/TasksMock.cpp
     taskmock/TaskMock.cpp
@@ -30,7 +31,7 @@ ADD_EXECUTABLE(test menu/menu_test.cpp)
 
 ADD_EXECUTABLE(testTask Task/Task_test.cpp Task/Task.cpp Tasks/Tasks.cpp)
 
-ADD_EXECUTABLE(main Strategy/Prioritize.cpp Strategy/Scheduler.cpp Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
+ADD_EXECUTABLE(main Strategysrc/Completed.cpp Strategysrc/Scheduler.cpp Strategysrc/Prioritize.cpp Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
 
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_LINK_LIBRARIES(testTask gtest)
