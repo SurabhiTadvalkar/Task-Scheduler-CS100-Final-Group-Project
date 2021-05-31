@@ -1,7 +1,7 @@
 #ifndef PRIORITIZEMOCK_HPP
 #define PRIORITIZEMOCK_HPP
 
-#include "./../taskmock/TasksMock.hpp"
+#include "./../Tasks/Tasks.hpp"
 
 class Prioritize {
 public:

@@ -6,7 +6,7 @@ ADD_SUBDIRECTORY(googletest)
 
 ADD_EXECUTABLE(testcommand
     commandtest.cpp
-    taskmock/TasksMock.cpp
+    Tasks/Tasks.cpp
     taskmock/TaskMock.cpp
     taskmock/ProjectMock.cpp
     taskcommandssrc/addtask.cpp
@@ -39,6 +39,21 @@ ADD_EXECUTABLE(compositevalgrind
     Task/Task.cpp
     Tasks/Tasks.cpp
     Project/Project.cpp
+)
+
+ADD_EXECUTABLE(commandvalgrind
+    valgrindtests/commandtest.cpp
+    Task/Task.cpp
+    Tasks/Tasks.cpp
+    Project/Project.cpp
+    taskcommandssrc/addtask.cpp
+    taskcommandssrc/changetaskname.cpp
+    taskcommandssrc/changetaskdeadline.cpp
+    taskcommandssrc/changetaskstatus.cpp
+    taskcommandssrc/changetaskdescription.cpp
+    taskcommandssrc/printTasks.cpp
+    prioritizemock/SchedulerMock.cpp #these will need to be changed
+    prioritizemock/CompletedMock.cpp #these will need to be changed
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

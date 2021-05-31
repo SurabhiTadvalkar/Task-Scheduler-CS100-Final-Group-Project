@@ -1,14 +1,14 @@
 #include "./../taskcommandsheader/addtask.hpp"
 
 addtask::addtask(Tasks* childTask, Tasks* parentTask) {
-    setTask = childTask;
-    setParentTask = parentTask; 
+    setTask = parentTask;
+    setChildTask = childTask; 
 }
 
 void addtask::execute() {
-    setParentTask->addTask(setTask); 
+    setTask->addTask(setChildTask); 
 }
     
 void addtask::unexecute() {
-    setParentTask->removeTask(setTask);
+    setTask->removeTask(setChildTask);
 }
