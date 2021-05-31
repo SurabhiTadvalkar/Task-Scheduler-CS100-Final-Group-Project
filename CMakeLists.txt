@@ -5,6 +5,12 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_SUBDIRECTORY(googletest)
 
 ADD_EXECUTABLE(testcommand
+#    Tasks/Tasks.cpp
+ #   Task/Task.cpp
+  #  Project/Project.cpp
+   # Strategy/Prioritize.cpp
+   # Strategy/Scheduler.cpp
+   #Strategy/Completed.cpp
     commandtest.cpp
     taskmock/TasksMock.cpp
     taskmock/TaskMock.cpp
@@ -25,7 +31,18 @@ ADD_EXECUTABLE(test menu/menu_test.cpp)
 
 ADD_EXECUTABLE(testTask Task/Task_test.cpp Task/Task.cpp Tasks/Tasks.cpp)
 
-ADD_EXECUTABLE(main Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
+ADD_EXECUTABLE(main 
+        main.cpp 
+        menu/menu.cpp 
+        Task/Task.cpp 
+        Tasks/Tasks.cpp
+        taskcommandssrc/addtask.cpp 
+        taskcommandssrc/changetaskname.cpp 
+        taskcommandssrc/changetaskdescription.cpp 
+        taskcommandssrc/changetaskdeadline.cpp 
+        taskcommandssrc/changetaskstatus.cpp 
+        Project/Project.cpp
+)
 
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_LINK_LIBRARIES(testTask gtest)

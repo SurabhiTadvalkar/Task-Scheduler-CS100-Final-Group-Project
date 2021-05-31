@@ -133,6 +133,26 @@ TEST(ProjectClassDeadline, ProjectDeadlineEmpty) {
    EXPECT_EQ(project->getDeadline(), "");
 }
 
+TEST(ProjectClass_getTasks, emptyTasks){
+
+Project* p = new Project();
+vector<Tasks*>* ptasks = p->getTasks();
+
+EXPECT_EQ(*ptasks, *p->getTasks());
+
+
+}
+
+TEST(ProjectClass_getTasks, fullTasks){
+
+Project* p = new Project();
+vector<Tasks*>* ptasks = p->getTasks();
+
+EXPECT_EQ(*ptasks, *p->getTasks());
+
+
+}
+
 TEST(ProjectClassDeadline, FindClosestDeadlineDay) {
    Project* project = new Project();
    project->addDeadline("05/20/21");
