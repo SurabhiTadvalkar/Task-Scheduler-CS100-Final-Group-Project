@@ -1,29 +1,28 @@
 #include "./TaskMock.hpp"
+#include <string>
 
+TaskMock::TaskMock() {}
+
+TaskMock::~TaskMock() {
+    delete name; 
+    delete deadline;
+    delete description;
+    delete status;
+    delete myTaskParent; 
+}
+
+TaskMock::TaskMock(const TaskMock& rhs) {
+    name = new string();
+    deadline = new string();
+    description = new string();
+    status = new bool();
+
+    (*name) = (*rhs.name);
+    (*deadline) = (*rhs.deadline);
+    (*description) = (*rhs.description);
+    (*status) = (*rhs.status);
+    myTaskParent = nullptr;
+}
 void TaskMock::print() {
-	testVar = 1; 
-}
-
-void TaskMock::addDeadline(std::string deadline) {
-	testVar = 2;
-}
-
-void TaskMock::setStatus(bool status) {
-	testVar = 3;
-}
-
-void TaskMock::addDescription(std::string description) {
-	testVar = 4;
-}
-
-void TaskMock::addName(std::string name) {
-	testVar = 5;
-}
-
-void TaskMock::addTask(Tasks* task) {
-	testVar = 6; 
-}
-
-int TaskMock::getTestVar() {
-	return testVar; 
+    testVar = -1; 
 }

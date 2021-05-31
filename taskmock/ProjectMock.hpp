@@ -1,29 +1,26 @@
 #ifndef PROJECTMOCK_HPP
 #define PROJECTMOCK_HPP
 
-#include "Tasks.hpp" 
+#include "TasksMock.hpp" 
 
+#include <iostream>
 #include <string>
 #include <vector>
 
+using std::string;
+
 class ProjectMock : public Tasks {
 public:
-    void print();
-    void addDeadline(std::string deadline);
-    void addName(std::string name); 
-    void addDescription(std::string description); 
-    void setStatus(bool status); 
-    void addTask(Tasks* task); 
-//  void removeTask(Tasks* task); necessary for unexecute
-    //fortesting 
-    int getTestVar(); 
+    ProjectMock(); 
+    ~ProjectMock(); 
+    ProjectMock(const ProjectMock& rhs); 
+    virtual string findClosestDeadline(); 
+    virtual Tasks* findTask(string targetString);
+    virtual void print(); 
 
 private:
     std::vector<Tasks*> tasks; 
-    std::string findClosestDeadline(); 
-    std::string closestDeadline; 
-
-    //for testing 
-    int testVar; 
+    string closestDeadline; 
+    bool isLessThan(string, string);
 };
 #endif //ProjectMock.hpp 

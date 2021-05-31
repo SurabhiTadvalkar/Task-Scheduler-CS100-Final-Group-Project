@@ -8,6 +8,7 @@
 class changetaskdescription : public TaskCommand {
 public:
     changetaskdescription(Tasks* task, std::string description);
+    changetaskdescription(Tasks* task);
     virtual void execute();
     virtual void unexecute();
 
