@@ -5,6 +5,12 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_SUBDIRECTORY(googletest)
 
 ADD_EXECUTABLE(testcommand
+#    Tasks/Tasks.cpp
+ #   Task/Task.cpp
+  #  Project/Project.cpp
+   # Strategy/Prioritize.cpp
+   # Strategy/Scheduler.cpp
+   #Strategy/Completed.cpp
     commandtest.cpp
     Tasks/Tasks.cpp
     taskmock/TaskMock.cpp
@@ -25,7 +31,7 @@ ADD_EXECUTABLE(test menu/menu_test.cpp)
 
 ADD_EXECUTABLE(testTask Task/Task_test.cpp Task/Task.cpp Tasks/Tasks.cpp)
 
-ADD_EXECUTABLE(main Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
+ADD_EXECUTABLE(main Strategysrc/Completed.cpp Strategysrc/Scheduler.cpp Strategysrc/Prioritize.cpp Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
 
 ADD_EXECUTABLE(compositevalgrindcomp
     valgrindtests/compositetestcomp.cpp 

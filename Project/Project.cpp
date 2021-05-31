@@ -40,6 +40,10 @@ Project::Project(const Project& rhs){
      }
 }
    
+vector<Tasks*>* Project::getTasks(){ 
+    return &tasks;
+}
+
 bool Project::isLessThan(string lhs, string rhs) {
     if (lhs == "" || rhs == "") { //needed, otherwise abort() gets called on substr() calls
         return !(lhs == ""); 
@@ -47,7 +51,7 @@ bool Project::isLessThan(string lhs, string rhs) {
 
     string lhsYear = lhs.substr(6, 2);
     string rhsYear = rhs.substr(6, 2);
-
+    
     if (lhsYear < rhsYear) {
 	return true;
     }
@@ -73,13 +77,17 @@ bool Project::isLessThan(string lhs, string rhs) {
 string Project::findClosestDeadline() {
 
     string closest = this->getDeadline();
-
+    string deadlineCpy = "";
     for (int i = 0; i < tasks.size(); ++i) {
-        string deadlineCpy = tasks.at(i)->getDeadline();
-	if (isLessThan(deadlineCpy, closest)) {
-	    closest = tasks.at(i)->getDeadline();
+	if(typeid(Project) == typeid(*tasks.at(i))){
+	    deadlineCpy = tasks.at(i)->findClosestDeadline();
 	}
-		
+        if(typeid(Task) == typeid(*tasks.at(i))) {deadlineCpy = tasks.at(i)->getDeadline();}
+	if (isLessThan(deadlineCpy, closest)) {
+            closest = deadlineCpy;	    
+	}
+    }
+/*		
 	string subClosest = tasks.at(i)->findClosestDeadline(); 
 	if (subClosest != "") {
 	    if (isLessThan(subClosest, closest)) {
@@ -91,7 +99,7 @@ string Project::findClosestDeadline() {
     if (isLessThan((*deadline), closest)) {
         closest = (*deadline);
     }
-
+*/
     return closest;
 }
 
