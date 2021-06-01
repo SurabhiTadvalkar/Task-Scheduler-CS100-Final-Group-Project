@@ -1,7 +1,12 @@
 #ifndef COMPLETEDMOCK_H
 #define COMPLETEDMOCK_H
 
-#include "PrioritizeMock.hpp"
+#include "./../Strategyheaders/Prioritize.hpp"
+
+#include <vector>
+#include <typeinfo>
+#include <string>
+using std::string;
 
 class CompletedMock : public Prioritize {
 public:

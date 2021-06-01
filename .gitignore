@@ -8,3 +8,6 @@ test
 main
 testTask
 testProject
+commandvalgrind
+compositevalgrind
+compositevalgrindcomp

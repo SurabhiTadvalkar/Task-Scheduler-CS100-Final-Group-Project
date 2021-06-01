@@ -12,6 +12,7 @@ class Prioritize{
 		Tasks* myTask;
 	public:
 		Prioritize(Tasks* t);
+                Prioritize(); 
 		virtual	Tasks* sort();
 
 };

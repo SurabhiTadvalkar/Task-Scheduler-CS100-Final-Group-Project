@@ -5,14 +5,14 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_SUBDIRECTORY(googletest)
 
 ADD_EXECUTABLE(testcommand
-#    Tasks/Tasks.cpp
- #   Task/Task.cpp
-  #  Project/Project.cpp
-   # Strategy/Prioritize.cpp
-   # Strategy/Scheduler.cpp
-   #Strategy/Completed.cpp
+    Tasks/Tasks.cpp
+    Task/Task.cpp
+    Project/Project.cpp
+    Strategysrc/Prioritize.cpp
+    #Strategy/Scheduler.cpp
+    #Strategy/Completed.cpp
     commandtest.cpp
-    taskmock/TasksMock.cpp
+    Tasks/Tasks.cpp
     taskmock/TaskMock.cpp
     taskmock/ProjectMock.cpp
     taskcommandssrc/addtask.cpp
@@ -46,6 +46,36 @@ ADD_EXECUTABLE(main
  	Strategysrc/Prioritize.cpp 
 	Strategysrc/Completed.cpp 
 	Strategysrc/Scheduler.cpp 
+)
+
+ADD_EXECUTABLE(compositevalgrindcomp
+    valgrindtests/compositetestcomp.cpp 
+    Task/Task.cpp
+    Tasks/Tasks.cpp
+    Project/Project.cpp
+)
+
+ADD_EXECUTABLE(compositevalgrind
+    valgrindtests/compositetest.cpp
+    Task/Task.cpp
+    Tasks/Tasks.cpp
+    Project/Project.cpp
+)
+
+ADD_EXECUTABLE(commandvalgrind
+    valgrindtests/commandtest.cpp
+    Task/Task.cpp
+    Tasks/Tasks.cpp
+    Project/Project.cpp
+    taskcommandssrc/addtask.cpp
+    taskcommandssrc/changetaskname.cpp
+    taskcommandssrc/changetaskdeadline.cpp
+    taskcommandssrc/changetaskstatus.cpp
+    taskcommandssrc/changetaskdescription.cpp
+    taskcommandssrc/printTasks.cpp
+    Strategysrc/Prioritize.cpp 
+    Strategysrc/Scheduler.cpp
+    Strategysrc/Completed.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

@@ -2,7 +2,7 @@
 #include "../taskmock/ProjectMock.hpp"
 #include "../taskmock/TaskMock.hpp"
 
-SchedulerMock::SchedulerMock(Tasks* task) {
+SchedulerMock::SchedulerMock(Tasks* task) : Prioritize() {
     myTask = task; 
 } 
 

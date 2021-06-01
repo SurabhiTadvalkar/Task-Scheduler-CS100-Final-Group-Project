@@ -1,12 +1,12 @@
 #include "TasksMock.hpp"
 
 Tasks::Tasks() {
-	name = new string("");
-	description = new string("");;
-	deadline = new string("");
-	status = new bool(false);
-	myTaskParent = nullptr;
-	tabCount = 0;
+    name = new string("");
+    description = new string("");;
+    deadline = new string("");
+    status = new bool(false);
+    myTaskParent = nullptr;
+    tabCount = 0;
 
 }
 

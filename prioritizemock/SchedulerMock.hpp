@@ -1,7 +1,12 @@
 #ifndef SCHEDULERMOCK_H
 #define SCHEDULERMOCK_H
 
-#include "PrioritizeMock.hpp"
+#include "./../Strategyheaders/Prioritize.hpp"
+
+#include <vector>
+#include <typeinfo>
+#include <string>
+using std::string;
 
 class SchedulerMock : public Prioritize {
 public:

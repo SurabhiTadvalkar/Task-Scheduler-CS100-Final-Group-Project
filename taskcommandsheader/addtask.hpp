@@ -6,10 +6,11 @@
 class addtask : public TaskCommand {
 public:
     addtask(Tasks* childTask, Tasks* parentTask);
+    ~addtask() {}
     virtual void execute(); 
     virtual void unexecute();
 private: 
-    Tasks* setParentTask; 
+    Tasks* setChildTask; 
 };
 
 #endif//addtask.hpp
