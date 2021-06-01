@@ -1,10 +1,10 @@
 #include "gtest/gtest.h"
 
-#include "taskmock/TasksMock.hpp"
+#include "Tasks/Tasks.hpp"
 #include "taskmock/TaskMock.hpp"
 #include "taskmock/ProjectMock.hpp" 
 
-#include "prioritizemock/PrioritizeMock.hpp"
+#include "Strategyheaders/Prioritize.hpp"
 #include "prioritizemock/CompletedMock.hpp"
 #include "prioritizemock/SchedulerMock.hpp"
 

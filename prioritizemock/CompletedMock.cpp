@@ -3,7 +3,7 @@
 #include "../taskmock/TaskMock.hpp"
 
 CompletedMock::CompletedMock(Tasks* task) {
-    myTask = task;
+    myTask = task; 
 }
 
 Tasks* CompletedMock::sort() {

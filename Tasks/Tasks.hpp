@@ -16,6 +16,8 @@ protected:
 
     int countTabs();
     void printTabs();
+    //for testing
+    int testVar = 0; 
 
 public:
     Tasks();
@@ -23,21 +25,22 @@ public:
     virtual ~Tasks();
     Tasks(Tasks&);
     virtual void print() = 0;
-    void addName(string _name);
-    void addDescription(string _description);
-    void addDeadline(string _deadline);
-    void setStatus(bool _status);
-    void setParent(Tasks* task);
+    virtual void addName(string _name);
+    virtual void addDescription(string _description);
+    virtual void addDeadline(string _deadline);
+    virtual void setStatus(bool _status);
+    virtual void setParent(Tasks* task);
     virtual void addTask(Tasks* task) {} //default implementation
     virtual void removeTask(Tasks* targetTask) {} //default implementation
     virtual Tasks* findTask(string targetString) { return nullptr; } //default implementation
     virtual string findClosestDeadline() { return ""; } //default implementation
 
-    string getName();
-    string getDescription();
-    string getDeadline();
-    bool getStatus();
-    Tasks* getParent();
-
+    virtual string getName();
+    virtual string getDescription();
+    virtual string getDeadline();
+    virtual bool getStatus();
+    virtual Tasks* getParent();
+    //for testing
+    int getTestVar() { return testVar; }
 };
 #endif

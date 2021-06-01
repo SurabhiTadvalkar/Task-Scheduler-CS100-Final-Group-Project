@@ -1,5 +1,4 @@
 #include "ProjectMock.hpp"
-#include "TaskMock.hpp"
 
 #include <string> 
 #include <sstream> 
@@ -12,15 +11,11 @@ using std::endl;
 ProjectMock::ProjectMock() {}
 
 ProjectMock::~ProjectMock() 
-{
-    delete name;
-    delete description;
-    delete deadline; 
-    delete status; 
-    delete myTaskParent; 
+{ 
     for (int i = 0; i < tasks.size(); ++i) {
         delete this->tasks.at(i); 
     }
+    tasks.clear(); 
 }
 
 ProjectMock::ProjectMock(const ProjectMock& rhs) {
@@ -45,3 +40,28 @@ Tasks* ProjectMock::findTask(string targetString) {
     //not needed for mock
     return nullptr; 
 }
+
+void ProjectMock::addName(string _name) {
+    testVar = 5;
+}
+
+void ProjectMock::addDescription(string _description) {
+    testVar = 4;
+}
+
+void ProjectMock::addDeadline(string _deadline) {
+    testVar = 2;
+}
+
+void ProjectMock::setStatus(bool _status) {
+    testVar = 3;
+}
+
+void ProjectMock::addTask(Tasks* task) {
+    testVar = 6;
+}
+
+void ProjectMock::removeTask(Tasks* targetTask) {
+    testVar = 7;
+}
+
