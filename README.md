@@ -219,13 +219,17 @@ Strategy Design Pattern:
 
 ![strategy](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/strategy.png)
 
-printTasks class - composition
+printTasks class - composition: \
+Responsible for making sure the concrete strategy is set correctly. 
 
-Prioritize class - compositor
+Prioritize class - compositor: \
+The "absract" class which all concrete strategies derive from. In this class, sort() has a default implimentation which simply prints out the (unsorted) tasks or projects.
 
-Scheduler - concrete strategy 1
+Scheduler - concrete strategy 1: \
+In the Scheduler concrete strategy class, sort() will sort the tasks or projects by deadline; From closest to furthest. 
 
-Completed - concrete strategy 2
+Completed - concrete strategy 2: \
+In the Completed concrete strategy class, sort() will sort the tasks or projects by status. 
 
  ## Screenshots
  General Menu: \
