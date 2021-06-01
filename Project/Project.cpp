@@ -79,15 +79,12 @@ string Project::findClosestDeadline() {
     string closest = this->getDeadline();
     string deadlineCpy = "";
     for (int i = 0; i < tasks.size(); ++i) {
-	if(typeid(Project) == typeid(*tasks.at(i))){
-	    deadlineCpy = tasks.at(i)->findClosestDeadline();
-	}
-        if(typeid(Task) == typeid(*tasks.at(i))) {deadlineCpy = tasks.at(i)->getDeadline();}
+        deadlineCpy = tasks.at(i)->getDeadline();
 	if (isLessThan(deadlineCpy, closest)) {
-            closest = deadlineCpy;	    
+            closest = tasks.at(i)->getDeadline();	    
 	}
-    }
-/*		
+    
+		
 	string subClosest = tasks.at(i)->findClosestDeadline(); 
 	if (subClosest != "") {
 	    if (isLessThan(subClosest, closest)) {
@@ -99,7 +96,7 @@ string Project::findClosestDeadline() {
     if (isLessThan((*deadline), closest)) {
         closest = (*deadline);
     }
-*/
+
     return closest;
 }
 

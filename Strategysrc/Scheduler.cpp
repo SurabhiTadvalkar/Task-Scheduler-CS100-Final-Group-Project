@@ -30,7 +30,7 @@ Scheduler::Scheduler(Tasks* t2) : Prioritize(t2){ }
                                         else {key = v->at(i)->getDeadline();}
 
                                         for(int j = i-1; j>=0; --j){ 
-                                                if(tasks->isLessThan(key,v->at(i)->getDeadline() )){
+                                                if(tasks->isLessThan(v->at(i)->getDeadline(),key )){
                                                         Tasks* swap = v->at(j+1);
                                                         v->at(j+1) = v->at(j);
                                                         v->at(j) = swap;

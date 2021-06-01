@@ -31,7 +31,22 @@ ADD_EXECUTABLE(test menu/menu_test.cpp)
 
 ADD_EXECUTABLE(testTask Task/Task_test.cpp Task/Task.cpp Tasks/Tasks.cpp)
 
-ADD_EXECUTABLE(main Strategysrc/Completed.cpp Strategysrc/Scheduler.cpp Strategysrc/Prioritize.cpp Task/Task.cpp Project/Project.cpp Tasks/Tasks.cpp main.cpp)
+ADD_EXECUTABLE(main 
+        main.cpp 
+        menu/menu.cpp 
+        Task/Task.cpp 
+        Tasks/Tasks.cpp
+        taskcommandssrc/addtask.cpp 
+        taskcommandssrc/changetaskname.cpp 
+        taskcommandssrc/changetaskdescription.cpp 
+        taskcommandssrc/changetaskdeadline.cpp 
+        taskcommandssrc/changetaskstatus.cpp 
+        taskcommandssrc/printTasks.cpp
+        Project/Project.cpp 
+ 	Strategysrc/Prioritize.cpp 
+	Strategysrc/Completed.cpp 
+	Strategysrc/Scheduler.cpp 
+)
 
 ADD_EXECUTABLE(compositevalgrindcomp
     valgrindtests/compositetestcomp.cpp 

@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 #include "menu.cpp"
-#include "mocks/TaskCommand.hpp"
+#include "../taskcommandsheader/taskcommand.hpp"
 #include "mocks/ConcreteCommand1Mock.hpp"
 #include "mocks/ConcreteCommand2Mock.hpp"
 
