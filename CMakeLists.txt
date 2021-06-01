@@ -77,13 +77,24 @@ ADD_EXECUTABLE(commandvalgrind
     Strategysrc/Scheduler.cpp
     Strategysrc/Completed.cpp
 )
+ADD_EXECUTABLE(testStrategy
+	Strategysrc/Strategy_test.cpp
+        Strategysrc/Prioritize.cpp
+        Strategysrc/Completed.cpp
+        Strategysrc/Scheduler.cpp
+        Task/Task.cpp
+        Tasks/Tasks.cpp
+        Project/Project.cpp
+)
 
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_LINK_LIBRARIES(testTask gtest)
 TARGET_LINK_LIBRARIES(testcommand gtest)
 TARGET_LINK_LIBRARIES(testProject gtest)
+TARGET_LINK_LIBRARIES(testStrategy gtest)
 TARGET_COMPILE_DEFINITIONS(testProject PRIVATE gtest_disable_pthreads=ON)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
 TARGET_COMPILE_DEFINITIONS(testTask PRIVATE gtest_disable_pthreads=ON)
 TARGET_COMPILE_DEFINITIONS(testcommand PRIVATE gtest_disable_pthreads=ON)
+TARGET_COMPILE_DEFINITIONS(testStrategy PRIVATE gtest_disable_pthreads=ON)
 
