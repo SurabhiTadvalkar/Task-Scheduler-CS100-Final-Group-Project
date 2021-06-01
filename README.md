@@ -1,5 +1,6 @@
 # Task Scheduler:
-> Authors: [Jesus Martinez Vega](https://github.com/jesus-mv) , [Surabhi Tadvalkar](https://github.com/SurabhiTadvalkar), [Calvin Truong](https://github.com/ctruo)
+
+Authors: [Jesus Martinez Vega](https://github.com/jesus-mv) , [Surabhi Tadvalkar](https://github.com/SurabhiTadvalkar), [Calvin Truong](https://github.com/ctruo)
  
 ## Project Description
 Being college students, time management is essental to our success. Since its important to keep all assignments, and class schedules in order - we decided on a task scheduler seeing as we all need to be organized to succeed. In this task scheduler, the user will be able to create (or delete) tasks with a title, description, priority, and due date. The user will also be able to create tasks within tasks and be able to edit and undo any operations. Input and output will be all be done in the terminal. 
@@ -266,7 +267,7 @@ This will create multiple executables. For the purpose of running the program on
 ```console 
 ./main
 ````
-After which the Task Scheduler will run. \
+After which the Task Scheduler will run. 
 
 The program has a total of four menus: a general menu, edit menu, simple menu, and a complex menu. The general menu is the default menu of the program, from here, all other menus are accessed. Entering "a" will initiate the simple menu, allowing options on simple tasks. Similarly, entering "e" will open the edit menu, enabling edits on existing tasks or projects. Finally, entering "p" will begin the complex menu, permitting various options on projects. \
 Additionally, entering "o" will allow for a variety of ways to print the projects / tasks. Entering "q" in the general menu will exit the program, otherwise "q" will simply exit the current menu. 
