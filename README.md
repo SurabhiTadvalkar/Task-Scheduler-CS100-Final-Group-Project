@@ -220,16 +220,16 @@ Strategy Design Pattern:
 ![strategy](https://github.com/cs100/final-project-jmart586_stadv001_ctruo032/blob/master/images/strategy.png)
 
 printTasks class - composition: \
-Responsible for making sure the concrete strategy is set correctly. 
+Responsible for making sure the concrete strategy is set correctly. This is a class takes a strategy object that is created depending on the user's selection of criteria for printing. It has a private strategy pointer variable that will be set to the object being passed in. Upon the call of the execute command to print, the strategy object will be sorted and printed according to selected strategy.
 
 Prioritize class - compositor: \
-The "absract" class which all concrete strategies derive from. In this class, sort() has a default implimentation which simply prints out the (unsorted) tasks or projects.
+The "abstract" class which all concrete strategies derive from. In this class, sort() has a default implementation which simply prints out the (unsorted) tasks or projects. 
 
 Scheduler - concrete strategy 1: \
-In the Scheduler concrete strategy class, sort() will sort the tasks or projects by deadline; From closest to furthest. 
+In the Scheduler concrete strategy class, sort() will sort the tasks or projects by deadline. The closest deadline will be printed first and the last deadline is the furthest date. The Scheduler sort() function utlizies the copied tasks object that is passed in the constructor. Insertion sort is then used to sort the entire task scheduler and arrange them by dates. Recursion is used to account for composite class cases, such as projects within projects. The deadlines within these complex projects will be sorted by date as well. 
 
 Completed - concrete strategy 2: \
-In the Completed concrete strategy class, sort() will sort the tasks or projects by status. 
+In the Completed concrete strategy class, sort() will sort the tasks or projects by status. Tasks and projects that have not been finished will be output first, followed by the completed tasks and projects. The Completed sort() function utlizies the copied tasks object that is passed in the constructor. Insertion sort is then used to sort the entire task scheduler and arrange them by status. Recursion is used to account for composite class cases, such as projects within projects. The deadlines within these complex projects will be sorted by completion as well. 
 
  ## Screenshots
  General Menu: \
