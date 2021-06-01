@@ -226,27 +226,51 @@ Scheduler - concrete strategy 1
 
 Completed - concrete strategy 2
 
-
-
- > ## Phase III
- > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
- > * Before the meeting you should perform a sprint plan like you did in Phase II
- > * In the meeting with your TA you will discuss: 
- >   - How effective your last sprint was (each member should talk about what they did)
- >   - Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- >   - Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- >   - What tasks you are planning for this next sprint.
-
- > ## Final deliverable
- > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
- 
  ## Screenshots
- > Screenshots of the input/output after running your application
- ## Installation/Usage
- > Instructions on installing and running your application
- ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ General Menu: \
+ <img width="139" alt="general_menu" src="https://user-images.githubusercontent.com/77246269/120323646-8f4ef280-c29a-11eb-867f-a522e83ca2db.png">
  
+ Task Input Menu: \
+ <img width="209" alt="task_input" src="https://user-images.githubusercontent.com/77246269/120320443-0aaea500-c297-11eb-8589-fc7a62246ec0.png">
+ 
+ Project Input Menu: \
+ <img width="185" alt="project_input" src="https://user-images.githubusercontent.com/77246269/120320849-814ba280-c297-11eb-83e9-32fe739281c6.png">
+ 
+ Edit Input Menu: \
+<img width="213" alt="edit_input" src="https://user-images.githubusercontent.com/77246269/120320950-97596300-c297-11eb-8d27-4003901284e0.png">
+
+Print Input Menu: \
+<img width="139" alt="print_input" src="https://user-images.githubusercontent.com/77246269/120321006-a5a77f00-c297-11eb-9f7a-b6715c20bc83.png">
+
+Prioritized Output (normal output, no sort): \
+<img width="437" alt="prioritize_output" src="https://user-images.githubusercontent.com/77246269/120321340-0cc53380-c298-11eb-8243-28ccccd25150.png">
+
+Completed Output (sorted by status): \
+<img width="444" alt="completed_output" src="https://user-images.githubusercontent.com/77246269/120321413-21a1c700-c298-11eb-9a21-e9e421a43728.png">
+
+Scheduler Output (sorted by date): \
+<img width="413" alt="scheduler_output" src="https://user-images.githubusercontent.com/77246269/120321484-367e5a80-c298-11eb-90d9-dbc70ff87569.png">
+
+ ## Installation/Usage
+In a terminal, using git, clone the repository and change the directory as follows: 
+```console
+git clone --recursive https://github.com/cs100/final-project-jmart586_stadv001_ctruo032.git
+cd final-project-jmart586_stadv001_ctruo032
+```
+If not already installed, install CMake3. Then, run the following commands: 
+```console 
+cmake3 .
+make 
+````
+This will create multiple executables. For the purpose of running the program only one needs to be run. Type the following command:
+```console 
+./main
+````
+After which the Task Scheduler will run. \
+
+The program has a total of four menus: a general menu, edit menu, simple menu, and a complex menu. The general menu is the default menu of the program, from here, all other menus are accessed. Entering "a" will initiate the simple menu, allowing options on simple tasks. Similarly, entering "e" will open the edit menu, enabling edits on existing tasks or projects. Finally, entering "p" will begin the complex menu, permitting various options on projects. \
+Additionally, entering "o" will allow for a variety of ways to print the projects / tasks. Entering "q" in the general menu will exit the program, otherwise "q" will simply exit the current menu. 
+
+ ## Testing
+Running ```cmake3 .``` and ```make``` will generate, in addition to the executable for the Task Scheduler, various unit test executables. These unit tests were used ensure that the various classes that make up the Task Scheduler would run correctly. \
+Valgrind was also used to confirm the absence of memory leaks. To this end, various valgrind tests were created. In these tests, the interactions between classes that make up the Task Scheduler were put to the test, so that no memory leaks would be present in the main executable. 
