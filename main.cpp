@@ -16,6 +16,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 void name(Menu*, Tasks*);
 void description(Menu*, Tasks*);
@@ -24,61 +25,118 @@ void status(Menu*, Tasks*);
 
 Tasks* simpleTask(Menu*, vector<Tasks* >);
 Tasks* projectTask(Menu*, vector<Tasks* >);
-void printTask(Menu*, vector<Tasks* >); 
+void printTask(Menu*, vector<Tasks* >);
+
+bool isLessThan(string, string);
+bool sortDeadline(Tasks*, Tasks*);
+  
 
 int main() {
     Menu* menu = new Menu();
     string input;
     string userInput;
-    vector<Tasks* > taskList;   
- 
+    vector<Tasks* > taskList;
+    Tasks* task = nullptr;
+    Tasks* project = nullptr;
+
     while (input != "q") {
         menu->generalMenu();
         cin >> input;
 
         if (input == "a") {
-           Tasks* task = simpleTask(menu, taskList);    
-  	   taskList.push_back(task);       
-	}
- 
+            task = simpleTask(menu, taskList);  
+            taskList.push_back(task);  
+        }
         else if (input == "p") {
-            Tasks* project = projectTask(menu, taskList);
+            project = projectTask(menu, taskList);
             taskList.push_back(project);
         }
         else if (input == "o") {
-	    printTask(menu, taskList);
-	}
+            printTask(menu, taskList);
+        }
         else if (input == "e") {
-            menu->editMenu();   
+            menu->editMenu();
         }
     }
     
-      
+    
+
     return 0;
+}
+
+bool isLessThan(string lhs, string rhs) {
+    if (lhs == "" || rhs == "") { //needed, otherwise abort() gets called on substr() calls
+        return !(lhs == ""); 
+    }
+
+    string lhsYear = lhs.substr(6, 2);
+    string rhsYear = rhs.substr(6, 2);
+
+    if (lhsYear < rhsYear) {
+	return true;
+    }
+    else if (lhsYear == rhsYear) {
+    string lhsMonth = lhs.substr(0, 2);
+	string rhsMonth = rhs.substr(0, 2);
+	if (lhsMonth < rhsMonth) {
+	    return true;
+	}
+	else if (lhsMonth == rhsMonth) {
+	    string lhsDay = lhs.substr(3, 2);
+	    string rhsDay = rhs.substr(3, 2);
+	    if (lhsDay < rhsDay) {
+	        return true;
+	    }
+	}
+    }
+
+    return false;
+}
+
+bool sortDeadline(Tasks* task1, Tasks* task2) {
+    return isLessThan(task1->getDeadline(), task2->getDeadline());
 }
 
 void printTask(Menu* menu, vector<Tasks* > tasks) {
     int input;
 
-    cout << "Print options: \n0 - Scheduler \n1 - Completed\n";
+    cout << "Print options: \n0 - Scheduler \n1 - Completed\n2 - Print all\n";
     cin >> input;
     if (input == 0) {
+        std::sort(tasks.begin(), tasks.end(), sortDeadline); //sort vector by deadline
+        
         for (int i = 0; i < tasks.size(); ++i) {
-            Scheduler* sched = new Scheduler(tasks.at(i));
+            Prioritize* sched = new Scheduler(tasks.at(i));
             TaskCommand* cmd = new printTasks(sched);
             menu->setCommand(cmd);
             menu->ExecuteCommand();
+            delete cmd;
+            delete sched;
+        }
+    }
+    else if (input == 1) {
+        for (int i = 0; i < tasks.size(); ++i) {
+            Prioritize* comp = new Completed(tasks.at(i));
+            TaskCommand* cmd = new printTasks(comp);
+            menu->setCommand(cmd);
+            menu->ExecuteCommand();
+            delete cmd;
+            delete comp;
         }
     }
     else {
         for (int i = 0; i < tasks.size(); ++i) {
-            Completed* comp = new Completed(tasks.at(i));
-            TaskCommand* cmd = new printTasks(comp);
+            Prioritize* pri = new Prioritize(tasks.at(i));
+            TaskCommand* cmd = new printTasks(pri);
             menu->setCommand(cmd);
             menu->ExecuteCommand();
+            delete cmd;
+            delete pri;
         }
     }
-}
+}      
+
+
 
 
 Tasks* simpleTask(Menu* menu, vector<Tasks* > list) {
