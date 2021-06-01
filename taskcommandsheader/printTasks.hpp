@@ -2,7 +2,7 @@
 #define PRINTTASKS_HPP
 
 #include "./taskcommand.hpp"
-#include "../prioritizemock/PrioritizeMock.hpp"
+#include "./../Strategyheaders/Prioritize.hpp"
 
 class printTasks : public TaskCommand {
 public:
