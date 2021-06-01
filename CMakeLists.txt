@@ -57,8 +57,24 @@ ADD_EXECUTABLE(commandvalgrind
     taskcommandssrc/changetaskdeadline.cpp
     taskcommandssrc/changetaskstatus.cpp
     taskcommandssrc/changetaskdescription.cpp
+   # taskcommandssrc/printTasks.cpp
+   # Strategysrc/Prioritize.cpp 
+   # Strategysrc/Scheduler.cpp
+   # Strategysrc/Completed.cpp
+)
+
+ADD_EXECUTABLE(strategyvalgrind
+    valgrindtests/strategytest.cpp
+    Task/Task.cpp
+    Tasks/Tasks.cpp
+    Project/Project.cpp
+    taskcommandssrc/addtask.cpp
+    taskcommandssrc/changetaskname.cpp
+    taskcommandssrc/changetaskdeadline.cpp
+    taskcommandssrc/changetaskstatus.cpp
+    taskcommandssrc/changetaskdescription.cpp
     taskcommandssrc/printTasks.cpp
-    Strategysrc/Prioritize.cpp 
+    Strategysrc/Prioritize.cpp
     Strategysrc/Scheduler.cpp
     Strategysrc/Completed.cpp
 )

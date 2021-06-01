@@ -6,10 +6,10 @@ Task::Task(){}
 Task::~Task(){}
 
 Task::Task(const Task& rhs){
-    name = new string();
-    deadline = new string();
-    description = new string();
-    status = new bool();
+//    name = new string();
+//    deadline = new string();
+//    description = new string();
+//    status = new bool();
 
     (*name) = (*rhs.name);
     (*deadline) = (*rhs.deadline);

@@ -16,6 +16,10 @@ Prioritize::Prioritize() {
 
 }
 
+Prioritize::~Prioritize() {
+    delete myTask; 
+}
+
 Tasks* Prioritize::sort(){
-	return myTask;
+    return myTask;
 }

@@ -8,11 +8,11 @@
 #include "./../taskcommandsheader/changetaskdeadline.hpp"
 #include "./../taskcommandsheader/changetaskstatus.hpp"
 #include "./../taskcommandsheader/changetaskdescription.hpp"
-#include "./../taskcommandsheader/printTasks.hpp"
+//#include "./../taskcommandsheader/printTasks.hpp"
 
-#include "./../Strategyheaders/Prioritize.hpp"
-#include "./../Strategyheaders/Scheduler.hpp" 
-#include "./../Strategyheaders/Completed.hpp"
+//#include "./../Strategyheaders/Prioritize.hpp"
+//#include "./../Strategyheaders/Scheduler.hpp" 
+//#include "./../Strategyheaders/Completed.hpp"
 
 using namespace std;
 

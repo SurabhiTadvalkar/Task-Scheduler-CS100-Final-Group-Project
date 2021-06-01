@@ -7,6 +7,7 @@
 class printTasks : public TaskCommand {
 public:
     printTasks(Prioritize* strategy);
+    ~printTasks(); 
     virtual void execute();
     virtual void unexecute();
 private:

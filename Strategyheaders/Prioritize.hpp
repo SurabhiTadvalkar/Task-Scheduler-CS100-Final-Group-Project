@@ -12,7 +12,8 @@ class Prioritize{
 		Tasks* myTask;
 	public:
 		Prioritize(Tasks* t);
-                Prioritize(); 
+                Prioritize(); //needed to get working mocks
+                virtual ~Prioritize(); 
 		virtual	Tasks* sort();
 
 };

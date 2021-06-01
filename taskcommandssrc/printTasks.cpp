@@ -4,6 +4,10 @@ printTasks::printTasks(Prioritize* strategy) {
     myStrategy = strategy;
 }
 
+printTasks::~printTasks() {
+    delete myStrategy; 
+}
+
 void printTasks::execute() {
     myStrategy->sort()->print();
 }

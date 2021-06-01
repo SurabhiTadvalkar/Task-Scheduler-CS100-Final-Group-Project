@@ -14,7 +14,8 @@ Scheduler::Scheduler(Tasks* t2) : Prioritize(t2){ }
                                 if(v->size() ==1){ 
                                         if(typeid(Project) == typeid(*v->at(0))){ 
                                                 Tasks* temp = v->at(0);
-						v->at(0) = (new Scheduler(temp))->sort(); 
+                                                Prioritize* myScheduler = new Scheduler(temp);
+						v->at(0) = myScheduler->sort(); 
 						v->at(0)->setParent(tasks);
                                         }
 					return tasks;
@@ -24,7 +25,9 @@ Scheduler::Scheduler(Tasks* t2) : Prioritize(t2){ }
                                 for(int i=1; i<v->size(); ++i){
                                         if(typeid(Project) == typeid(*v->at(i))){
                                                 Tasks* temp = v->at(i);
-                                                v->at(i) = (new Scheduler(v->at(i)))->sort(); v->at(i)->setParent(tasks);
+                                                Prioritize* myScheduler = new Scheduler(temp); 
+                                                v->at(i) = myScheduler->sort(); 
+                                                v->at(i)->setParent(tasks); 
                                                 key = v->at(i)->findClosestDeadline();
                                         }
                                         else {key = v->at(i)->getDeadline();}

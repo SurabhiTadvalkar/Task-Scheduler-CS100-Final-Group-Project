@@ -22,10 +22,15 @@ Project::~Project()
 }
 
 Project::Project(const Project& rhs){
-     name = new string(); (*name) = (*rhs.name);
-     description = new string(); (*description) = (*rhs.description);
-     deadline = new string(); (*deadline) = (*rhs.deadline);
-     status = new bool; (*status) = (*rhs.status);
+    // name = new string(); (*name) = (*rhs.name);
+    // description = new string(); (*description) = (*rhs.description);
+    // deadline = new string(); (*deadline) = (*rhs.deadline);
+    // status = new bool; (*status) = (*rhs.status);
+
+     (*name) = (*rhs.name); 
+     (*description) = (*rhs.description); 
+     (*deadline) = (*rhs.deadline);
+     (*status) = (*rhs.status);
      tasks = rhs.tasks;
      
      for (int i=0; i<tasks.size(); i++){
