@@ -33,7 +33,6 @@ std::string test_output = testing::internal::GetCapturedStdout();
 
 std::ostringstream out;
 out <<  std::endl;
-out << "n- name *you must enter a name" << std::endl;
 out << "d- description" << std::endl;
 out << "t- deadline"<< std::endl;
 out << "b- status" << std::endl;
@@ -51,7 +50,6 @@ std::string test_output = testing::internal::GetCapturedStdout();
 
 std::ostringstream out;
 out <<  std::endl;
-out << "n- name *you must enter a name" << std::endl;
 out << "d- description" << std::endl;
 out << "t- deadline"<< std::endl;
 out << "b- status" << std::endl;
@@ -75,6 +73,7 @@ out << "en- edit name" << std::endl;
 out << "ed- edit description" << std::endl;
 out << "et- edit deadline" << std::endl;
 out << "eb- change status" << std:: endl;
+out << "q- I'm done entering info" << std::endl;
 EXPECT_EQ(test_output, out.str());
 }
 TEST(UserInput, word){

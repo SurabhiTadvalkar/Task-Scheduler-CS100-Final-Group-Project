@@ -2,7 +2,6 @@
 
 void Menu::simpleMenu(){
     std::cout <<  std::endl;
-    std::cout << "n- name *you must enter a name" << std::endl;
     std::cout << "d- description" << std::endl;
     std::cout << "t- deadline"<< std::endl;
     std::cout << "b- status" << std::endl;
@@ -10,7 +9,6 @@ void Menu::simpleMenu(){
 }
 void Menu::complexMenu(){
     std::cout <<  std::endl;
-    std::cout << "n- name *you must enter a name" << std::endl;
     std::cout << "d- description" << std::endl;
     std::cout << "t- deadline"<< std::endl;
     std::cout << "b- status" << std::endl;
@@ -33,6 +31,7 @@ void Menu::editMenu(){
     std::cout << "ed- edit description" << std::endl;
     std::cout << "et- edit deadline" << std::endl;
     std::cout << "eb- change status" << std:: endl;
+    std::cout << "q- I'm done entering info" << std::endl; 
 }
 std::string Menu::UserInput(){return userinput;}
 void Menu::setUserInput(std::string input){userinput = input;}
