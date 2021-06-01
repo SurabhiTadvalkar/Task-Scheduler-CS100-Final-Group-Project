@@ -23,135 +23,87 @@ void description(Menu*, Tasks*);
 void deadline(Menu*, Tasks*);
 void status(Menu*, Tasks*);
 
-Tasks* simpleTask(Menu*, vector<Tasks* >);
-Tasks* projectTask(Menu*, vector<Tasks* >);
-void printTask(Menu*, vector<Tasks* >);
-
-bool isLessThan(string, string);
-bool sortDeadline(Tasks*, Tasks*);
-  
+void simpleTask(Menu*, Tasks*);
+void projectTask(Menu*, Tasks*);
+void printTask(Menu*,Tasks*);
+void editTask(Menu*, Tasks*);
 
 int main() {
     Menu* menu = new Menu();
     string input;
     string userInput;
-    vector<Tasks* > taskList;
-    Tasks* task = nullptr;
-    Tasks* project = nullptr;
-
+    Project* taskList = new Project(); 
+    TaskCommand* t= new changetaskname(taskList, "TASK SCHEDULER"); t->execute(); delete t;
+    
+    
     while (input != "q") {
         menu->generalMenu();
         cin >> input;
 
         if (input == "a") {
-            task = simpleTask(menu, taskList);  
-            taskList.push_back(task);  
+          simpleTask(menu, taskList);  
+             
         }
         else if (input == "p") {
-            project = projectTask(menu, taskList);
-            taskList.push_back(project);
+          projectTask(menu, taskList);
+            
         }
         else if (input == "o") {
             printTask(menu, taskList);
         }
         else if (input == "e") {
-            menu->editMenu();
+            editTask(menu, taskList);
         }
     }
     
-    
+    delete menu;
+   delete taskList; 
 
     return 0;
 }
 
-bool isLessThan(string lhs, string rhs) {
-    if (lhs == "" || rhs == "") { //needed, otherwise abort() gets called on substr() calls
-        return !(lhs == ""); 
-    }
-
-    string lhsYear = lhs.substr(6, 2);
-    string rhsYear = rhs.substr(6, 2);
-
-    if (lhsYear < rhsYear) {
-	return true;
-    }
-    else if (lhsYear == rhsYear) {
-    string lhsMonth = lhs.substr(0, 2);
-	string rhsMonth = rhs.substr(0, 2);
-	if (lhsMonth < rhsMonth) {
-	    return true;
-	}
-	else if (lhsMonth == rhsMonth) {
-	    string lhsDay = lhs.substr(3, 2);
-	    string rhsDay = rhs.substr(3, 2);
-	    if (lhsDay < rhsDay) {
-	        return true;
-	    }
-	}
-    }
-
-    return false;
-}
-
-bool sortDeadline(Tasks* task1, Tasks* task2) {
-    return isLessThan(task1->getDeadline(), task2->getDeadline());
-}
-
-void printTask(Menu* menu, vector<Tasks* > tasks) {
+void printTask(Menu* menu, Tasks* taskList) {
     int input;
 
     cout << "Print options: \n0 - Scheduler \n1 - Completed\n2 - Print all\n";
     cin >> input;
     if (input == 0) {
-        std::sort(tasks.begin(), tasks.end(), sortDeadline); //sort vector by deadline
-        
-        for (int i = 0; i < tasks.size(); ++i) {
-            Prioritize* sched = new Scheduler(tasks.at(i));
-            TaskCommand* cmd = new printTasks(sched);
-            menu->setCommand(cmd);
-            menu->ExecuteCommand();
-            delete cmd;
-            delete sched;
-        }
-    }
+	    Prioritize* s = new Scheduler(taskList);
+            TaskCommand* t = new printTasks(s); 
+	    t->execute();
+	    delete s; delete t;
+	}
+    
     else if (input == 1) {
-        for (int i = 0; i < tasks.size(); ++i) {
-            Prioritize* comp = new Completed(tasks.at(i));
-            TaskCommand* cmd = new printTasks(comp);
-            menu->setCommand(cmd);
-            menu->ExecuteCommand();
-            delete cmd;
-            delete comp;
+	    Prioritize* c = new Completed(taskList);
+            TaskCommand* t = new printTasks(c);
+            t->execute();
+            delete c; delete t;
+
         }
-    }
+    
     else {
-        for (int i = 0; i < tasks.size(); ++i) {
-            Prioritize* pri = new Prioritize(tasks.at(i));
-            TaskCommand* cmd = new printTasks(pri);
-            menu->setCommand(cmd);
-            menu->ExecuteCommand();
-            delete cmd;
-            delete pri;
-        }
-    }
+	    Prioritize* p = new Scheduler(taskList);
+            TaskCommand* t = new printTasks(p);
+            t->execute();
+            delete p; delete t;
+
+       }
 }      
 
 
 
 
-Tasks* simpleTask(Menu* menu, vector<Tasks* > list) {
+void simpleTask(Menu* menu, Tasks* taskList) {
     string input;
 
     Tasks* task = new Task();
-
+    name(menu, task);
     while (input != "q") {
         menu->simpleMenu();
         cin >> input;
 
-        if (input == "n") {
-            name(menu, task);
-        }
-        else if (input == "d") {
+        if (input == "d") {
             description(menu, task);
         }
         else if (input == "t") {
@@ -161,23 +113,20 @@ Tasks* simpleTask(Menu* menu, vector<Tasks* > list) {
             status(menu, task);
         }
     }
-    list.push_back(task);   
-    return task;  
+    TaskCommand* t = new addtask(task, taskList);   
+      t->execute(); delete t;
 }
 
-Tasks* projectTask(Menu* menu, vector<Tasks* > list) {
+void projectTask(Menu* menu,Tasks* taskList) {
     string input;
 
     Tasks* project = new Project();
-
+	name(menu, project);
      while (input != "q") {
         menu->complexMenu();
         cin >> input;
 
-        if (input == "n") {
-            name(menu, project);
-        }
-        else if (input == "d") {
+        if (input == "d") {
             description(menu, project);
         }
         else if (input == "t") {
@@ -187,20 +136,39 @@ Tasks* projectTask(Menu* menu, vector<Tasks* > list) {
             status(menu, project);
         }
         else if (input == "c") {
-           Tasks* project2 = projectTask(menu, list);
-           TaskCommand *cmd = new addtask(project2, project);
-           menu->setCommand(cmd);
-           menu->ExecuteCommand();
+	   projectTask(menu, project);
+                   
         }
         else if (input == "s") {
-            Tasks* task = simpleTask(menu, list);
-            TaskCommand *cmd = new addtask(task, project);
-            menu->setCommand(cmd);
-            menu->ExecuteCommand();
+            simpleTask(menu, project);
         }
     }
-    list.push_back(project);    
-    return project;
+    TaskCommand* t = new addtask(project, taskList); t->execute(); delete t;   
+ 
+}
+
+void editTask(Menu* menu, Tasks* taskList){
+    string input;
+    string taskName;
+
+    cout << "Name of Task: " << endl; cin.ignore();
+
+    getline(cin, taskName);
+
+    Tasks* task = taskList->findTask(taskName);
+
+    while(input != "q"){
+        menu->editMenu();
+        cin >> input;
+        if(input == "en"){
+           name(menu, task);
+        }    
+	else if (input == "ed" ){description(menu, task);}
+	else if(input == "et"){deadline(menu, task);}
+        else if(input == "eb"){status(menu, task);}
+
+    }
+
 }
 
 void name(Menu* menu, Tasks* task) {
@@ -214,7 +182,7 @@ void name(Menu* menu, Tasks* task) {
     menu->setUserInput(userInput);
     TaskCommand *cmd1 = new changetaskname(task, menu->UserInput());
     menu->setCommand(cmd1);
-    menu->ExecuteCommand();
+    menu->ExecuteCommand();delete cmd1;
 }
 
 void description(Menu* menu, Tasks* task) {
@@ -228,7 +196,7 @@ void description(Menu* menu, Tasks* task) {
     menu->setUserInput(userInput);
     TaskCommand *cmd1 = new changetaskdescription(task, menu->UserInput());
     menu->setCommand(cmd1);
-    menu->ExecuteCommand();
+    menu->ExecuteCommand();delete cmd1;
 }
 
 void deadline(Menu* menu, Tasks* task) {
@@ -242,7 +210,7 @@ void deadline(Menu* menu, Tasks* task) {
     menu->setUserInput(userInput);
     TaskCommand *cmd1 = new changetaskdeadline(task, menu->UserInput());
     menu->setCommand(cmd1);
-    menu->ExecuteCommand();
+    menu->ExecuteCommand(); delete cmd1;
 }
 
 void status(Menu* menu, Tasks* task) {
@@ -252,7 +220,7 @@ void status(Menu* menu, Tasks* task) {
     cin >> userInput;
     cout << endl;
     
-    TaskCommand *cmd1 = new changetaskstatus(task, userInput);
+    TaskCommand *cmd1 = new changetaskstatus(task, userInput); 
     menu->setCommand(cmd1);
-    menu->ExecuteCommand();
+    menu->ExecuteCommand(); delete cmd1;
 }
